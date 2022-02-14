@@ -6,7 +6,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "prettier": "prettier --write \"src/**/*.{vue,ts}\"",
-    "lint": "eslint --ext .vue,.ts src"
+    "lint": "eslint --ext .vue,.ts src",
+    "prepare": "husky install"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
