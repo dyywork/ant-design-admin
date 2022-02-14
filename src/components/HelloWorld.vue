@@ -4,7 +4,6 @@
   defineProps<{ msg: string }>();
 
   const count = ref(0);
-  const list = ref([1, 2]);
   const addCount = () => {
     count.value++;
   };
