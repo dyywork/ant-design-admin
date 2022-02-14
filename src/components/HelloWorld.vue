@@ -7,6 +7,7 @@
   const addCount = () => {
     count.value++;
   };
+  console.log(1);
 </script>
 
 <template>
