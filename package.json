@@ -1,13 +1,17 @@
 {
   "name": "ant-design-admin",
   "version": "0.0.0",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "prettier": "prettier --write \"src/**/*.{vue,ts}\"",
-    "lint": "eslint --ext .vue,.ts src",
-    "prepare": "husky install"
+    "lint": "eslint --ext .vue,.ts src"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
