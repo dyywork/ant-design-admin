@@ -9,3 +9,10 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v4
+      - uses: ./
+        id: run_commitlint
+        env:
+          NODE_PATH: ${{ github.workspace }}/node_modules
+      - name: Show results from JSON output
+        if: ${{ always() }}
+        run: echo ${{ toJSON(steps.run_commitlint.outputs.results) }}
