@@ -6,6 +6,28 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "types": {
+        "add": {
+          "description": "A new add ✨",
+          "title": "add",
+          "emoji": "✨"
+        },
+        "change": {
+          "description": "A new change 📦",
+          "title": "change",
+          "emoji": "✨"
+        },
+        "merge": {
+          "description": "A new merge 🚨",
+          "title": "merge",
+          "emoji": "✨"
+        }
+      }
+    }
+  },
   "scripts": {
     "commit": "git-cz",
     "dev": "vite",
