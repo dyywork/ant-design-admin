@@ -22,13 +22,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm ci --ignore-scripts
-      - uses: ./
+      - uses: prettier
         id: run_commitlint
         env:
           NODE_PATH: ${{ github.workspace }}/node_modules
       - name: Show results from JSON output
         if: ${{ always() }}
-        run: echo ${{ toJSON(steps.run_commitlint.outputs.results) }}
+        run: npm run prettier
   commitlint-pulling-from-docker-hub:
     runs-on: ubuntu-latest
     steps:
