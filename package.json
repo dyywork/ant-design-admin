@@ -26,7 +26,7 @@
     }
   },
   "scripts": {
-    "commit": "git-cz",
+    "commit": "git add . && git-cz && git push github master",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
