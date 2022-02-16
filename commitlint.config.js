@@ -3,6 +3,6 @@ module.exports = {
      '@commitlint/config-conventional'
     ],
     rules:{
-      'type-enum': [2, 'always', ['add', 'change', 'merge']],
+      'type-enum': [2, 'always', ['add', 'change', 'merge', 'del']],
     },
   };
