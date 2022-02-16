@@ -12,18 +12,15 @@
       "types": {
         "add": {
           "description": "A new add ✨",
-          "title": "add",
-          "emoji": "✨"
+          "title": "✨ add"
         },
         "change": {
           "description": "A new change 📦",
-          "title": "change",
-          "emoji": "✨"
+          "title": "📦 change"
         },
         "merge": {
           "description": "A new merge 🚨",
-          "title": "merge",
-          "emoji": "✨"
+          "title": "🚨 merge"
         }
       }
     }
