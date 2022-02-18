@@ -38,7 +38,9 @@
   "dependencies": {
     "ant-design-vue": "^2.2.8",
     "eslint": "^8.7.0",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
