@@ -1,63 +1,98 @@
-<template><router-view></router-view></template>
-
+<template>
+  <a-layout style="min-height: 100vh">
+    <a-layout-sider v-model:collapsed="collapsed" collapsible>
+      <div class="logo"></div>
+      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+        <a-menu-item key="1">
+          <pie-chart-outlined />
+          <span>Option 1</span>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <desktop-outlined />
+          <span>Option 2</span>
+        </a-menu-item>
+        <a-sub-menu key="sub1">
+          <template #title>
+            <span>
+              <user-outlined />
+              <span>User</span>
+            </span>
+          </template>
+          <a-menu-item key="3">Tom</a-menu-item>
+          <a-menu-item key="4">Bill</a-menu-item>
+          <a-menu-item key="5">Alex</a-menu-item>
+        </a-sub-menu>
+        <a-sub-menu key="sub2">
+          <template #title>
+            <span>
+              <team-outlined />
+              <span>Team</span>
+            </span>
+          </template>
+          <a-menu-item key="6">Team 1</a-menu-item>
+          <a-menu-item key="8">Team 2</a-menu-item>
+        </a-sub-menu>
+        <a-menu-item key="9">
+          <file-outlined />
+          <span>File</span>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-content style="margin: 0 16px">
+        <a-breadcrumb style="margin: 16px 0">
+          <a-breadcrumb-item>User</a-breadcrumb-item>
+          <a-breadcrumb-item>Bill</a-breadcrumb-item>
+        </a-breadcrumb>
+        <div
+          :style="{ padding: '24px', background: '#fff', minHeight: '360px' }"
+        >
+          <router-view></router-view>
+        </div>
+      </a-layout-content>
+      <a-layout-footer style="text-align: center">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
+</template>
 <script lang="ts">
-  export default {
-    name: 'Layout',
-  };
+  import {
+    PieChartOutlined,
+    DesktopOutlined,
+    UserOutlined,
+    TeamOutlined,
+    FileOutlined,
+  } from '@ant-design/icons-vue';
+  import { defineComponent, ref } from 'vue';
+  export default defineComponent({
+    components: {
+      PieChartOutlined,
+      DesktopOutlined,
+      UserOutlined,
+      TeamOutlined,
+      FileOutlined,
+    },
+    data() {
+      return {
+        collapsed: ref<boolean>(false),
+        selectedKeys: ref<string[]>(['1']),
+      };
+    },
+  });
 </script>
-
-<style scoped lang="less">
+<style>
   .logo {
-    height: 53px;
-    background-color: #001529;
-    color: white;
-    display: flex;
-    align-items: center;
-
-    img {
-      height: 43px;
-      padding-left: 10px;
-    }
-
-    span {
-      display: inline-block;
-      min-width: 50px;
-    }
-  }
-  .content {
-    height: 100%;
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 20px;
-      box-shadow: 0px 1px 5px #888888;
-      .el-dropdown-link {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        img {
-          width: 20px;
-          height: 20px;
-          margin-right: 8px;
-        }
-      }
-      i {
-        cursor: pointer;
-      }
-    }
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
   }
 
-  :deep(.el-menu) {
-    border-right: none;
+  .site-layout .site-layout-background {
+    background: #fff;
   }
-
-  :deep(.el-submenu__title) {
-    text-align: left;
-  }
-
-  :deep(.el-menu-item) {
-    text-align: left;
+  [data-theme='dark'] .site-layout .site-layout-background {
+    background: #141414;
   }
 </style>
