@@ -18,7 +18,7 @@
           "description": "A new change 📦",
           "title": "📦 change"
         },
-        "merge": {
+        "merge🚨 ": {
           "description": "A new merge 🚨",
           "title": "🚨 merge"
         }
@@ -32,8 +32,7 @@
     "preview": "vite preview",
     "prettier": "prettier --write \"src/**/*.{vue,ts}\"",
     "lint": "eslint --ext .vue,.ts src",
-    "prepare": "husky install",
-    "postinstall": "npm run prepare"
+    "prepare": "husky install"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
