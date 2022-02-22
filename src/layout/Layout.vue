@@ -1,7 +1,7 @@
 <template>
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
-      <div class="logo"></div>
+      <div class="logo">{{ open }}</div>
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
           <pie-chart-outlined />
@@ -58,6 +58,7 @@
   </a-layout>
 </template>
 <script lang="ts">
+  import { mapGetters } from 'vuex';
   import {
     PieChartOutlined,
     DesktopOutlined,
@@ -79,6 +80,9 @@
         collapsed: ref<boolean>(false),
         selectedKeys: ref<string[]>(['1']),
       };
+    },
+    computed: {
+      ...mapGetters(['open']),
     },
   });
 </script>
