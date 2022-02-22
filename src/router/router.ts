@@ -9,8 +9,7 @@ const constantRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/views/Login/Login.vue'),
     meta: { title: 'Table', icon: 'el-icon-menu' },
   },
-]
-
+];
 
 export const routes: Array<RouteRecordRaw> = [
   {
