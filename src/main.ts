@@ -4,5 +4,6 @@ import App from './App.vue';
 import router from './router/router';
 import 'ant-design-vue/dist/antd.css';
 import store from './store';
+import '../mock/index'
 
 createApp(App).use(Antd).use(store).use(router).mount('#app');
