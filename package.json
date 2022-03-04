@@ -30,7 +30,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "prettier": "prettier --write \"src/**/*.{vue,ts}\"",
+    "prettier": "prettier --write \"./**/*.{vue,ts}\"",
     "lint": "eslint --ext .vue,.ts src",
     "prepare": "husky install"
   },
