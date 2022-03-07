@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/Layout.vue';
 import EmptyLayout from '@/layout/EmptyLayout.vue';
+import store from '@/store';
+
+console.log(store.dispatch('router/getRouters').then(res => {console.log('res',res)}))
+console.log(store.state)
+// console.log(store.getters('router/asyncRoutes'))
 
 const constantRoutes: Array<RouteRecordRaw> = [
   {
@@ -47,6 +52,7 @@ export const routes: Array<RouteRecordRaw> = [
   },
 ];
 
+console.log(routes)
 const router = createRouter({
   routes: [...constantRoutes, ...routes],
   history: createWebHistory(),

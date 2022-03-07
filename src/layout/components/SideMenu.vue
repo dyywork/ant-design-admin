@@ -40,7 +40,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
+  import { mapGetters } from 'vuex';
   import {
     PieChartOutlined,
     DesktopOutlined,
