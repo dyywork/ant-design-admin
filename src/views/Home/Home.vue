@@ -1,16 +1,13 @@
 <template>
-  <router-link :to="{ name: 'login' }">Login</router-link>
+  <div>
+    <router-link :to="{ name: 'login' }">Login</router-link>
+    <a-button @click="goCenter">Center</a-button>
+  </div>
 </template>
 <script setup lang="ts">
-  import { onMounted } from 'vue';
-  import { getMenuList } from '@/api/user';
-  onMounted(async () => {
-    await getMenuList()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
+  const goCenter = () => {
+    router.push({ name: 'Center' });
+  };
 </script>

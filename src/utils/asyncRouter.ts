@@ -1,17 +1,16 @@
 import Layout from '@/layout/Layout.vue';
+const modules = import.meta.glob('../views/**/*.vue');
+
 export function asyncRoutes(routes: any[]) {
-  const routerList: any[] = [];
-  routes.forEach(item => {
+  routes.map(item => {
     if (!item.component) {
       item.component = Layout;
       if (item.children && item.children.length > 0) {
         asyncRoutes(item.children);
       }
-      routerList.push(item);
     } else {
-      item.component = () => import(item.component);
-      routerList.push(item);
+      item.component = modules[`../views${item.component}`];
     }
   });
-  return routerList;
+  return routes;
 }

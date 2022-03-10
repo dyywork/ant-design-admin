@@ -1,15 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/Layout.vue';
 import EmptyLayout from '@/layout/EmptyLayout.vue';
-import store from '@/store';
-
-console.log(
-  store.dispatch('router/getRouters').then(res => {
-    console.log('res', res);
-  })
-);
-console.log(store.state);
-// console.log(store.getters('router/asyncRoutes'))
 
 const constantRoutes: Array<RouteRecordRaw> = [
   {
@@ -33,33 +24,54 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/Home/Home.vue'),
         meta: { title: 'Home' },
       },
-      {
-        path: '/table',
-        name: 'Table',
-        component: () => import('@/views/Table/Table.vue'),
-        meta: { title: 'Table' },
-      },
     ],
   },
+  // {
+  //   path: '/center',
+  //   component: Layout,
+  //   meta: { title: '个人中心', icon: 'el-icon-location' },
+  //   children: [
+  //     {
+  //       path: '/center',
+  //       name: 'Center',
+  //       component: () => import('@/views/Center/Center.vue'),
+  //       meta: { title: 'Center' },
+  //     },
+  //   ],
+  // },
+];
+const router = createRouter({
+  routes: [...constantRoutes, ...routes],
+  history: createWebHistory(),
+});
+import { asyncRoutes } from '@/utils/asyncRouter';
+const list = [
   {
     path: '/center',
-    component: Layout,
+    component: '',
     meta: { title: '个人中心', icon: 'el-icon-location' },
     children: [
       {
         path: '/center',
         name: 'Center',
-        component: () => import('@/views/Center/Center.vue'),
+        component: '/Center/Center.vue',
         meta: { title: 'Center' },
+      },
+      {
+        path: '/table',
+        name: 'Table',
+        component: '/Table/Table.vue',
+        meta: { title: 'Table' },
       },
     ],
   },
 ];
-
+const routesList = asyncRoutes(list);
+console.log(routesList);
 console.log(routes);
-const router = createRouter({
-  routes: [...constantRoutes, ...routes],
-  history: createWebHistory(),
+
+routesList.forEach(item => {
+  router.addRoute(item);
 });
 
 export default router;

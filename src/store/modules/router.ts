@@ -20,6 +20,7 @@ const actions = {
     const data = JSON.parse(JSON.stringify(await getMenuList()));
     const routes = asyncRoutes(data);
     commit('GET_ROUTERS', routes);
+    console.log(state.routes);
   },
 };
 

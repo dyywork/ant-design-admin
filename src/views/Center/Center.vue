@@ -1,4 +1,6 @@
 <template>
-  <router-link :to="{ name: 'Home' }">Center</router-link>
+  <div>
+    <router-link :to="{ name: 'Table' }">Table</router-link>
+  </div>
 </template>
 <script setup lang="ts"></script>
