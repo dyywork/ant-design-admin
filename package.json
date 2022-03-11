@@ -1,30 +1,7 @@
 {
   "name": "ant-design-admin",
   "version": "0.0.0",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog",
-      "types": {
-        "add": {
-          "description": "A new add ✨",
-          "title": "✨ add"
-        },
-        "change": {
-          "description": "A new change 📦",
-          "title": "📦 change"
-        },
-        "merge🚨 ": {
-          "description": "A new merge 🚨",
-          "title": "🚨 merge"
-        }
-      }
-    }
-  },
+  "author": "dingyongya@qq.com",
   "scripts": {
     "commit": "git add . && git-cz && git push github master",
     "dev": "vite",
@@ -61,5 +38,61 @@
     "vite": "^2.7.2",
     "vue-eslint-parser": "^8.2.0",
     "vue-tsc": "^0.29.8"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "types": {
+        "feat": {
+          "description": "A new feature(一个新功能)",
+          "title": "Features"
+        },
+        "fix": {
+          "description": "A bug fix(错误修复)",
+          "title": "Fix"
+        },
+        "docs": {
+          "description": "Documentation only changes(仅文档更改)",
+          "title": "Docs"
+        },
+        "style": {
+          "description": "Changes that do not affect the meaning of the code(不影响代码含义的更改)",
+          "title": "Style"
+        },
+        "refactor": {
+          "description": "A code change that neither fixes a bug nor adds a feature(既不修复错误也不添加功能的代码更改)",
+          "title": "Refactor"
+        },
+        "perf": {
+          "description": "A code change that improves performance(提高性能的代码更改)",
+          "title": "Perf"
+        },
+        "test": {
+          "description": "Adding missing tests or correcting existing tests(添加缺失的测试或纠正现有的测试)",
+          "title": "Test"
+        },
+        "build": {
+          "description": "Changes that affect the build system or external dependencies(影响构建系统或外部依赖项的更改)",
+          "title": "Build"
+        },
+        "ci": {
+          "description": "Changes to our CI configuration files and scripts(更改我们的 CI 配置文件和脚本)",
+          "title": "Ci"
+        },
+        "chore": {
+          "description": "Other changes that don't modify src or test files(不修改 src 或测试文件的其他更改)",
+          "title": "Chore"
+        },
+        "revert": {
+          "description": "Reverts a previous commit(恢复之前的提交)",
+          "title": "Revert"
+        }
+      }
+    }
   }
 }
