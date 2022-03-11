@@ -44,34 +44,33 @@ const router = createRouter({
   routes: [...constantRoutes, ...routes],
   history: createWebHistory(),
 });
-import { asyncRoutes } from '@/utils/asyncRouter';
-const list = [
-  {
-    path: '/center',
-    component: '',
-    meta: { title: '个人中心', icon: 'el-icon-location' },
-    children: [
-      {
-        path: '/center',
-        name: 'Center',
-        component: '/Center/Center.vue',
-        meta: { title: 'Center' },
-      },
-      {
-        path: '/table',
-        name: 'Table',
-        component: '/Table/Table.vue',
-        meta: { title: 'Table' },
-      },
-    ],
-  },
-];
-const routesList = asyncRoutes(list);
-console.log(routesList);
-console.log(routes);
+// import { asyncRoutes } from '@/utils/asyncRouter';
+// const list = [
+//   {
+//     path: '/center',
+//     component: '',
+//     meta: { title: '个人中心', icon: 'el-icon-location' },
+//     children: [
+//       {
+//         path: '/center',
+//         name: 'Center',
+//         component: '/Center/Center.vue',
+//         meta: { title: 'Center' },
+//       },
+//       {
+//         path: '/table',
+//         name: 'Table',
+//         component: '/Table/Table.vue',
+//         meta: { title: 'Table' },
+//       },
+//     ],
+//   },
+// ];
+// const routesList = asyncRoutes(list);
+// console.log(routesList);
 
-routesList.forEach(item => {
-  router.addRoute(item);
-});
+// routesList.forEach(item => {
+//   router.addRoute(item);
+// });
 
 export default router;

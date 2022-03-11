@@ -2,7 +2,7 @@ import { getMenuList } from '@/api/user';
 import { asyncRoutes } from '@/utils/asyncRouter';
 
 interface StateType {
-  routes: [];
+  routes: any;
 }
 
 const state = {
@@ -17,10 +17,10 @@ const mutations = {
 
 const actions = {
   async getRouters({ commit }: any): Promise<void> {
-    const data = JSON.parse(JSON.stringify(await getMenuList()));
+    const { data } = await getMenuList();
     const routes = asyncRoutes(data);
+
     commit('GET_ROUTERS', routes);
-    console.log(state.routes);
   },
 };
 

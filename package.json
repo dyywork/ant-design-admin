@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "prettier": "prettier --write \"./**/*.{vue,ts}\"",
+    "prettier": "prettier --write \"./**/*.{vue,ts,js}\"",
     "lint": "eslint --ext .vue,.ts src",
     "prepare": "husky install"
   },

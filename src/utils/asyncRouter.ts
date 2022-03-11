@@ -3,7 +3,7 @@ const modules = import.meta.glob('../views/**/*.vue');
 
 export function asyncRoutes(routes: any[]) {
   routes.map(item => {
-    if (!item.component) {
+    if (item.component === '') {
       item.component = Layout;
       if (item.children && item.children.length > 0) {
         asyncRoutes(item.children);

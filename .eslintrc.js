@@ -13,6 +13,6 @@ module.exports = {
   extends: ['plugin:vue/vue3-recommended', 'prettier'],
   rules: {
     'no-console': 'warn',
-    "vue/multi-word-component-names": 'off'
+    'vue/multi-word-component-names': 'off',
   },
-}
+};
