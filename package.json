@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "dingyongya@qq.com",
   "scripts": {
-    "commit": "git add . && git-cz && git push github master",
+    "commit": "git add . && git-cz && git push && git push github master",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
