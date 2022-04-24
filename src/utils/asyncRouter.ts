@@ -12,5 +12,6 @@ export function asyncRoutes(routes: any[]) {
       item.component = modules[`../views${item.component}`];
     }
   });
+  console.log(routes);
   return routes;
 }

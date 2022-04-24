@@ -16,11 +16,10 @@ const mutations = {
 };
 
 const actions = {
-  async getRouters({ commit }: any): Promise<void> {
+  async getRouters({ commit }: any): Promise<any[]> {
     const { data } = await getMenuList();
     const routes = asyncRoutes(data);
-
-    commit('GET_ROUTERS', routes);
+    return routes;
   },
 };
 

@@ -26,51 +26,22 @@ export const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  // {
-  //   path: '/center',
-  //   component: Layout,
-  //   meta: { title: '个人中心', icon: 'el-icon-location' },
-  //   children: [
-  //     {
-  //       path: '/center',
-  //       name: 'Center',
-  //       component: () => import('@/views/Center/Center.vue'),
-  //       meta: { title: 'Center' },
-  //     },
-  //   ],
-  // },
+  {
+    path: '/error',
+    component: Layout,
+    meta: { title: '错误页面', icon: 'el-icon-location' },
+    children: [
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('@/views/Error/NotFound.vue'),
+      },
+    ],
+  },
 ];
 const router = createRouter({
   routes: [...constantRoutes, ...routes],
   history: createWebHistory(),
 });
-// import { asyncRoutes } from '@/utils/asyncRouter';
-// const list = [
-//   {
-//     path: '/center',
-//     component: '',
-//     meta: { title: '个人中心', icon: 'el-icon-location' },
-//     children: [
-//       {
-//         path: '/center',
-//         name: 'Center',
-//         component: '/Center/Center.vue',
-//         meta: { title: 'Center' },
-//       },
-//       {
-//         path: '/table',
-//         name: 'Table',
-//         component: '/Table/Table.vue',
-//         meta: { title: 'Table' },
-//       },
-//     ],
-//   },
-// ];
-// const routesList = asyncRoutes(list);
-// console.log(routesList);
-
-// routesList.forEach(item => {
-//   router.addRoute(item);
-// });
 
 export default router;

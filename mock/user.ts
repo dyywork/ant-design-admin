@@ -6,12 +6,13 @@ Mock.mock('/api/menu/list', 'post', () => {
     msg: '成功',
     data: [
       {
-        path: '/center',
+        path: '/admin',
         component: '',
+        name: 'centerUser',
         meta: { title: '个人中心', icon: 'el-icon-location' },
         children: [
           {
-            path: '/center',
+            path: '/admin/center',
             name: 'Center',
             component: '/Center/Center.vue',
             meta: { title: 'Center' },
