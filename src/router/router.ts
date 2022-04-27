@@ -1,6 +1,12 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordName,
+  RouteRecordRaw,
+} from 'vue-router';
 import Layout from '@/layout/Layout.vue';
 import EmptyLayout from '@/layout/EmptyLayout.vue';
+import store from '@/store';
 
 const constantRoutes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +22,7 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/',
     redirect: '/home',
     component: Layout,
+    name: 'Layout',
     meta: { title: '内容', icon: 'el-icon-location' },
     children: [
       {
@@ -42,6 +49,14 @@ export const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   routes: [...constantRoutes, ...routes],
   history: createWebHistory(),
+});
+
+const routesList = await store.dispatch('router/getRouters');
+routesList.forEach((item: RouteRecordRaw) => {
+  // 避免重复添加
+  if (!router.hasRoute(<RouteRecordName>item.name)) {
+    router.addRoute(item);
+  }
 });
 
 export default router;

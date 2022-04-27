@@ -10,8 +10,8 @@ router.beforeEach(async (to, from, next) => {
       next();
     } else {
       const routesList = await store.dispatch('router/getRouters');
-      console.log(routesList);
       routesList.forEach((item: RouteRecordRaw) => {
+        // 避免重复添加
         if (!router.hasRoute(<RouteRecordName>item.name)) {
           router.addRoute(item);
         }
