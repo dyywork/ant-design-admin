@@ -41,7 +41,9 @@
 
 <script lang="ts" setup>
   import { ref, computed } from 'vue';
-  import { mapGetters } from 'vuex';
+  import { useStore } from 'vuex';
+  import { routes } from '@/router/router';
+
   import {
     PieChartOutlined,
     DesktopOutlined,
@@ -49,6 +51,10 @@
     TeamOutlined,
     FileOutlined,
   } from '@ant-design/icons-vue';
+
+  const store = useStore();
+  const menuList = computed(() => store.state.router.routes);
+  console.log([...routes, ...store.state.router.routes]);
   const collapsed = ref(false);
   const selectedKeys = ref(['1']);
 </script>

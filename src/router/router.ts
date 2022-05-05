@@ -36,7 +36,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/error',
     component: Layout,
-    meta: { title: '错误页面', icon: 'el-icon-location' },
+    meta: { title: '错误页面', icon: 'el-icon-location', hidden: true },
     children: [
       {
         path: '/:pathMatch(.*)*',
@@ -49,14 +49,6 @@ export const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   routes: [...constantRoutes, ...routes],
   history: createWebHistory(),
-});
-
-const routesList = await store.dispatch('router/getRouters');
-routesList.forEach((item: RouteRecordRaw) => {
-  // 避免重复添加
-  if (!router.hasRoute(<RouteRecordName>item.name)) {
-    router.addRoute(item);
-  }
 });
 
 export default router;

@@ -10,15 +10,16 @@ const state = {
 };
 
 const mutations = {
-  GET_ROUTERS: (state: StateType, routes: any) => {
+  GET_ROUTERS: (state: StateType, routes: []) => {
     state.routes = routes;
   },
 };
 
 const actions = {
-  async getRouters({ commit }: any): Promise<any[]> {
+  async getRouters({ commit }: any) {
     const { data } = await getMenuList();
     const routes = asyncRoutes(data);
+    commit('GET_ROUTERS', routes);
     return routes;
   },
 };
