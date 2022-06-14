@@ -1,62 +1,43 @@
 <template>
   <a-layout-sider v-model:collapsed="collapsed" collapsible>
     <div class="logo"></div>
-    <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-      <a-menu-item key="1">
-        <pie-chart-outlined />
-        <span>Option 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <desktop-outlined />
-        <span>Option 2</span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
+    <a-menu v-model:selectedKeys="selectedKeys" v-model:openKeys='openKeys' theme="dark" mode="inline" @click='handleMenu'>
+      <a-sub-menu v-for="menu in menuList" :key="menu.path">
         <template #title>
           <span>
             <user-outlined />
-            <span>User</span>
+            <span>{{ menu.meta.title }}</span>
           </span>
         </template>
-        <a-menu-item key="3">Tom</a-menu-item>
-        <a-menu-item key="4">Bill</a-menu-item>
-        <a-menu-item key="5">Alex</a-menu-item>
+        <a-menu-item v-for="subMenu in menu.children" :key='subMenu.path'>{{subMenu.meta.title}}</a-menu-item>
       </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <template #title>
-          <span>
-            <team-outlined />
-            <span>Team</span>
-          </span>
-        </template>
-        <a-menu-item key="6">Team 1</a-menu-item>
-        <a-menu-item key="8">Team 2</a-menu-item>
-      </a-sub-menu>
-      <a-menu-item key="9">
-        <file-outlined />
-        <span>File</span>
-      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script lang="ts" setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, onMounted } from 'vue'
   import { useStore } from 'vuex';
-  import { routes } from '@/router/router';
-
+  import {useRoute, useRouter} from 'vue-router'
+  const route = useRoute();
+  const router = useRouter()
   import {
-    PieChartOutlined,
-    DesktopOutlined,
     UserOutlined,
-    TeamOutlined,
-    FileOutlined,
   } from '@ant-design/icons-vue';
 
+
   const store = useStore();
-  const menuList = computed(() => store.state.router.routes);
-  console.log([...routes, ...store.state.router.routes]);
+  const menuList = computed(() => store.state.router.routes).value;
   const collapsed = ref(false);
-  const selectedKeys = ref(['1']);
+  const selectedKeys = ref([]);
+  const openKeys = ref(['/admin']);
+  const handleMenu = ({ item, key, keyPath }) => {
+    router.push({path: key})
+  }
+  onMounted(() => {
+    const {path} = route
+    selectedKeys.value.push(path)
+  })
 </script>
 
 <style scoped lang="less">

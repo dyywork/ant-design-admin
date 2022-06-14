@@ -8,9 +8,7 @@
           <a-breadcrumb-item>User</a-breadcrumb-item>
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
-        <div
-          :style="{ padding: '24px', background: '#fff', minHeight: '360px' }"
-        >
+        <div>
           <router-view></router-view>
         </div>
       </a-layout-content>
