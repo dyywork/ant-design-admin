@@ -1,7 +1,13 @@
 <template>
   <a-layout-sider v-model:collapsed="collapsed" collapsible>
     <div class="logo"></div>
-    <a-menu v-model:selectedKeys="selectedKeys" v-model:openKeys='openKeys' theme="dark" mode="inline" @click='handleMenu'>
+    <a-menu
+      v-model:selectedKeys="selectedKeys"
+      v-model:openKeys="openKeys"
+      theme="dark"
+      mode="inline"
+      @click="handleMenu"
+    >
       <a-sub-menu v-for="menu in menuList" :key="menu.path">
         <template #title>
           <span>
@@ -9,22 +15,21 @@
             <span>{{ menu.meta.title }}</span>
           </span>
         </template>
-        <a-menu-item v-for="subMenu in menu.children" :key='subMenu.path'>{{subMenu.meta.title}}</a-menu-item>
+        <a-menu-item v-for="subMenu in menu.children" :key="subMenu.path">{{
+          subMenu.meta.title
+        }}</a-menu-item>
       </a-sub-menu>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script lang="ts" setup>
-  import { ref, computed, onMounted } from 'vue'
+  import { ref, computed, onMounted } from 'vue';
   import { useStore } from 'vuex';
-  import {useRoute, useRouter} from 'vue-router'
+  import { useRoute, useRouter } from 'vue-router';
   const route = useRoute();
-  const router = useRouter()
-  import {
-    UserOutlined,
-  } from '@ant-design/icons-vue';
-
+  const router = useRouter();
+  import { UserOutlined } from '@ant-design/icons-vue';
 
   const store = useStore();
   const menuList = computed(() => store.state.router.routes).value;
@@ -32,12 +37,12 @@
   const selectedKeys = ref([]);
   const openKeys = ref(['/admin']);
   const handleMenu = ({ item, key, keyPath }) => {
-    router.push({path: key})
-  }
+    router.push({ path: key });
+  };
   onMounted(() => {
-    const {path} = route
-    selectedKeys.value.push(path)
-  })
+    const { path } = route;
+    selectedKeys.value.push(path);
+  });
 </script>
 
 <style scoped lang="less">

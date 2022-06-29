@@ -1,4 +1,13 @@
 <template>
-  <router-link :to="{ name: 'Home' }">Home</router-link>
+  <router-link :to="{ name: 'Home' }">{{ name }}</router-link>
 </template>
-<script setup lang="ts"></script>
+<script lang="ts">
+  import {defineComponent} from 'vue'
+  export default defineComponent({
+    data() {
+      return {
+        name: "Home"
+      }
+    }
+  })
+</script>
