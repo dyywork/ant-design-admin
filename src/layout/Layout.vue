@@ -2,7 +2,7 @@
   <a-layout style="min-height: 100vh">
     <side-menu></side-menu>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0" />
+      <header-container />
       <a-layout-content style="margin: 0 16px">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>User</a-breadcrumb-item>
@@ -20,4 +20,5 @@
 </template>
 <script lang="ts" setup>
   import SideMenu from './components/SideMenu.vue';
+  import HeaderContainer from './components/HeaderContainer.vue'
 </script>

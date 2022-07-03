@@ -2,15 +2,16 @@
   <div class="login_content">
     <a-form
       :model="formState"
+      style='width: 400px'
       name="basic"
-      :label-col="{ span: 8 }"
+      :label-col="{ span: 6 }"
       :wrapper-col="{ span: 16 }"
       autocomplete="off"
       @finish="onFinish"
       @finish-failed="onFinishFailed"
     >
       <a-form-item
-        label="Username"
+        label="用户名"
         name="username"
         :rules="[{ required: true, message: 'Please input your username!' }]"
       >
@@ -18,11 +19,11 @@
       </a-form-item>
 
       <a-form-item
-        label="Password"
+        label="密码"
         name="password"
         :rules="[{ required: true, message: 'Please input your password!' }]"
       >
-        <a-input-password v-model:value="formState.password" />
+        <a-input-password v-model:value="formState.password"  size="small" />
       </a-form-item>
 
       <a-form-item name="remember" :wrapper-col="{ offset: 8, span: 16 }">
@@ -55,7 +56,10 @@
 </script>
 <style scoped lang="less">
   .login_content {
-    width: 600px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
   }
 </style>

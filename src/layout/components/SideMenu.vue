@@ -8,6 +8,12 @@
       mode="inline"
       @click="handleMenu"
     >
+      <a-menu-item key="1">
+        <template #icon>
+          <PieChartOutlined />
+        </template>
+        <span>Option 1</span>
+      </a-menu-item>
       <a-sub-menu v-for="menu in menuList" :key="menu.path">
         <template #title>
           <span>
@@ -15,9 +21,10 @@
             <span>{{ menu.meta.title }}</span>
           </span>
         </template>
-        <a-menu-item v-for="subMenu in menu.children" :key="subMenu.path">{{
-          subMenu.meta.title
-        }}</a-menu-item>
+          <a-menu-item v-for="subMenu in menu.children" :key="subMenu.path">{{
+              subMenu.meta.title
+            }}</a-menu-item>
+
       </a-sub-menu>
     </a-menu>
   </a-layout-sider>
@@ -29,14 +36,17 @@
   import { useRoute, useRouter } from 'vue-router';
   const route = useRoute();
   const router = useRouter();
-  import { UserOutlined } from '@ant-design/icons-vue';
+  import { routes } from '@/router/router'
+  import { UserOutlined, PieChartOutlined } from '@ant-design/icons-vue';
 
   const store = useStore();
-  const menuList = computed(() => store.state.router.routes).value;
+  const menuList = [...computed(() => store.state.router.routes).value];
+  console.log(routes)
+  console.log(menuList)
   const collapsed = ref(false);
-  const selectedKeys = ref([]);
+  const selectedKeys = ref<any>([]);
   const openKeys = ref(['/admin']);
-  const handleMenu = ({ item, key, keyPath }) => {
+  const handleMenu = ({ key }:any) => {
     router.push({ path: key });
   };
   onMounted(() => {
