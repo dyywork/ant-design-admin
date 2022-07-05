@@ -23,7 +23,7 @@ export const routes: Array<RouteRecordRaw> = [
     redirect: '/home',
     component: Layout,
     name: 'Layout',
-    meta: { title: '内容', icon: 'el-icon-location' },
+    meta: { title: '内容', icon: 'el-icon-location', hiddenSubMenu: true, },
     children: [
       {
         path: '/home',
@@ -42,6 +42,7 @@ export const routes: Array<RouteRecordRaw> = [
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: () => import('@/views/Error/NotFound.vue'),
+        meta: { title: '错误页面' },
       },
     ],
   },

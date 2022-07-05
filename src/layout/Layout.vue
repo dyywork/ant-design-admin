@@ -20,5 +20,5 @@
 </template>
 <script lang="ts" setup>
   import SideMenu from './components/SideMenu.vue';
-  import HeaderContainer from './components/HeaderContainer.vue'
+  import HeaderContainer from './components/HeaderContainer.vue';
 </script>

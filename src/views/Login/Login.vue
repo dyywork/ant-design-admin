@@ -2,7 +2,7 @@
   <div class="login_content">
     <a-form
       :model="formState"
-      style='width: 400px'
+      style="width: 400px"
       name="basic"
       :label-col="{ span: 6 }"
       :wrapper-col="{ span: 16 }"
@@ -23,7 +23,7 @@
         name="password"
         :rules="[{ required: true, message: 'Please input your password!' }]"
       >
-        <a-input-password v-model:value="formState.password"  size="small" />
+        <a-input-password v-model:value="formState.password" size="small" />
       </a-form-item>
 
       <a-form-item name="remember" :wrapper-col="{ offset: 8, span: 16 }">

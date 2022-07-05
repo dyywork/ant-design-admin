@@ -8,45 +8,39 @@
       mode="inline"
       @click="handleMenu"
     >
-      <a-menu-item key="1">
-        <template #icon>
-          <PieChartOutlined />
+      <template v-for="item in menuList" :key="item.path">
+        <template v-if="item.meta.hiddenSubMenu">
+          <a-menu-item :key="item.path">
+            <template #icon>
+              <PieChartOutlined />
+            </template>
+            {{ item.meta.title }}
+          </a-menu-item>
         </template>
-        <span>Option 1</span>
-      </a-menu-item>
-      <a-sub-menu v-for="menu in menuList" :key="menu.path">
-        <template #title>
-          <span>
-            <user-outlined />
-            <span>{{ menu.meta.title }}</span>
-          </span>
+        <template v-else>
+          <sub-menu :key="item.path" :menu-info="item" />
         </template>
-          <a-menu-item v-for="subMenu in menu.children" :key="subMenu.path">{{
-              subMenu.meta.title
-            }}</a-menu-item>
-
-      </a-sub-menu>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script lang="ts" setup>
-  import { ref, computed, onMounted } from 'vue';
+  import SubMenu from '@/layout/components/SubMenu.vue'
+  import { ref, computed, onMounted, reactive  } from 'vue';
   import { useStore } from 'vuex';
   import { useRoute, useRouter } from 'vue-router';
   const route = useRoute();
   const router = useRouter();
-  import { routes } from '@/router/router'
+  import { routes } from '@/router/router';
   import { UserOutlined, PieChartOutlined } from '@ant-design/icons-vue';
 
   const store = useStore();
-  const menuList = [...computed(() => store.state.router.routes).value];
-  console.log(routes)
-  console.log(menuList)
+  const menuList = [...reactive(routes),...computed(() => store.state.router.routes).value];
   const collapsed = ref(false);
   const selectedKeys = ref<any>([]);
   const openKeys = ref(['/admin']);
-  const handleMenu = ({ key }:any) => {
+  const handleMenu = ({ key }: any) => {
     router.push({ path: key });
   };
   onMounted(() => {
