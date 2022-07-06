@@ -1,15 +1,22 @@
 import Layout from '@/layout/Layout.vue';
+import EmptyLayout from '@/layout/EmptyLayout.vue';
 const modules = import.meta.glob('../views/**/*.vue');
 
 export function asyncRoutes(routes: any[]) {
   routes.map(item => {
-    if (item.component === '') {
+    if (!item.component) {
       item.component = Layout;
       if (item.children && item.children.length > 0) {
         asyncRoutes(item.children);
       }
     } else {
-      item.component = modules[`../views${item.component}`];
+      if (item.children && item.children.length > 0) {
+        // 多级嵌套路由处理
+        item.component = EmptyLayout;
+        asyncRoutes(item.children);
+      } else {
+        item.component = modules[`../views${item.component}`];
+      }
     }
   });
   return routes;

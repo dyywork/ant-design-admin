@@ -16,6 +16,20 @@ Mock.mock('/api/menu/list', 'post', () => {
             name: 'Center',
             component: '/Center/Center.vue',
             meta: { title: 'Center' },
+            children: [
+              {
+                path: '/admin/center',
+                name: 'Center1',
+                component: '/Center/Center.vue',
+                meta: { title: 'Center1' },
+              },
+              {
+                path: '/admin/table1',
+                name: 'Table1',
+                component: '/Table/Table.vue',
+                meta: { title: 'Table1' },
+              },
+            ],
           },
           {
             path: '/table',
