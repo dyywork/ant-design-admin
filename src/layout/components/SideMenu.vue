@@ -12,7 +12,7 @@
         <template v-if="!item.meta.hidden">
           <template v-if="item.meta.hiddenSubMenu">
             <a-menu-item :key="item.path">
-              <template v-if="item.meta?.icon" #icon >
+              <template v-if="item.meta?.icon" #icon>
                 <i :class="['iconfont', item.meta.icon]" />
               </template>
               {{ item.meta.title }}
