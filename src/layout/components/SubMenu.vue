@@ -3,14 +3,16 @@
 
 <template>
   <a-sub-menu :key="menuInfo.path">
-    <template #icon><MailOutlined /></template>
+    <template v-if="menuInfo.meta?.icon" #icon>
+      <i :class="['iconfont', menuInfo.meta.icon]" />
+    </template>
     <template #title>{{ menuInfo.meta.title }}</template>
     <template v-for="item in menuInfo.children" :key="item.path">
       <template v-if="!item.meta.hidden">
         <template v-if="!item.children">
           <a-menu-item :key="item.path">
-            <template #icon>
-              <PieChartOutlined />
+            <template v-if="item.meta?.icon" #icon>
+              <i :class="['iconfont', item.meta.icon]" />
             </template>
             {{ item.meta.title }}
           </a-menu-item>
@@ -24,12 +26,10 @@
 </template>
 
 <script lang="ts">
-  import { MailOutlined, PieChartOutlined } from '@ant-design/icons-vue';
   import { defineComponent } from 'vue';
 
   export default defineComponent({
     name: 'SubMenu',
-    components: { MailOutlined, PieChartOutlined },
     props: {
       menuInfo: {
         type: Object,

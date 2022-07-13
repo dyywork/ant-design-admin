@@ -16,9 +16,11 @@
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
     </a-layout>
+    <theme-setting />
   </a-layout>
 </template>
 <script lang="ts" setup>
   import SideMenu from './components/SideMenu.vue';
   import HeaderContainer from './components/HeaderContainer.vue';
+  import ThemeSetting from '@/components/ThemeSetting/ThemeSetting.vue';
 </script>

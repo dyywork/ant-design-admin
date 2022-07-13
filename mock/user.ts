@@ -9,12 +9,12 @@ Mock.mock('/api/menu/list', 'post', () => {
         path: '/admin',
         component: '',
         name: 'centerUser',
-        meta: { title: '个人中心', icon: 'el-icon-location' },
+        meta: { title: '个人中心', icon: 'icon-yonghu' },
         children: [
           {
             path: '/admin/center',
             name: 'Center',
-            component: '/Center/Center.vue',
+            component: 'EmptyLayout',
             meta: { title: 'Center' },
             children: [
               {

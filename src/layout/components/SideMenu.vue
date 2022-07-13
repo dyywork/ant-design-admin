@@ -12,8 +12,8 @@
         <template v-if="!item.meta.hidden">
           <template v-if="item.meta.hiddenSubMenu">
             <a-menu-item :key="item.path">
-              <template #icon>
-                <PieChartOutlined />
+              <template v-if="item.meta?.icon" #icon>
+                <i :class="['iconfont', item.meta.icon]" />
               </template>
               {{ item.meta.title }}
             </a-menu-item>
@@ -35,7 +35,6 @@
   const route = useRoute();
   const router = useRouter();
   import { routes } from '@/router/router';
-  import { UserOutlined, PieChartOutlined } from '@ant-design/icons-vue';
 
   const store = useStore();
   const menuList = [
@@ -66,5 +65,8 @@
   }
   [data-theme='dark'] .site-layout .site-layout-background {
     background: #141414;
+  }
+  :deep(.iconfont) {
+    font-size: 20px !important;
   }
 </style>

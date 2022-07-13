@@ -1,12 +1,5 @@
-import {
-  createRouter,
-  createWebHistory,
-  RouteRecordName,
-  RouteRecordRaw,
-} from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/Layout.vue';
-import EmptyLayout from '@/layout/EmptyLayout.vue';
-import store from '@/store';
 
 const constantRoutes: Array<RouteRecordRaw> = [
   {
@@ -23,33 +16,13 @@ export const routes: Array<RouteRecordRaw> = [
     redirect: '/home',
     component: Layout,
     name: 'Layout',
-    meta: { title: '内容', icon: 'el-icon-location' },
+    meta: { title: '内容', icon: 'icon-shouye', hiddenSubMenu: true },
     children: [
       {
         path: '/home',
         name: 'Home',
-        component: EmptyLayout,
+        component: () => import('@/views/Home/Home.vue'),
         meta: { title: 'Home' },
-        children: [
-          {
-            path: '/home',
-            name: 'Home',
-            component: () => import('@/views/Home/Home.vue'),
-            meta: { title: 'Home' },
-          },
-          {
-            path: '/404',
-            name: 'NotFound',
-            component: () => import('@/views/Error/NotFound.vue'),
-            meta: { title: '错误页面' },
-          },
-        ],
-      },
-      {
-        path: '/401',
-        name: 'NotFound1',
-        component: () => import('@/views/Error/NotFound.vue'),
-        meta: { title: '错误页面1' },
       },
     ],
   },
@@ -61,7 +34,6 @@ export const routes: Array<RouteRecordRaw> = [
       title: '错误页面',
       icon: 'el-icon-location',
       hidden: true,
-      hiddenSubMenu: true,
     },
     children: [
       {

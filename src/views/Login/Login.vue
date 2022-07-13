@@ -44,8 +44,8 @@
   import store from '@/store';
   const router = useRouter();
   const formState = ref({
-    username: '',
-    password: '',
+    username: '123',
+    password: '123',
     remember: '',
   });
   const onFinish = async () => {

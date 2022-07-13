@@ -9,6 +9,7 @@ export default defineConfig({
     alias: [{ find: '@', replacement: resolve(__dirname, 'src') }],
   },
   server: {
+    port: 9527,
     proxy: {
       // 选项写法
       '/api': {
