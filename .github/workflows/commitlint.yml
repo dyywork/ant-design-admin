@@ -21,7 +21,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm ci --ignore-scripts
       - name: lint
         run: npm run lint
       - name: prettier
