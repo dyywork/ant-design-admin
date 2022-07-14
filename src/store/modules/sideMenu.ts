@@ -8,7 +8,7 @@ const state = {
 
 const getters = {
   open: (state: any) => state.open,
-}
+};
 
 const mutations = {
   CHANGE_ASIDE: (state: StateType) => {
@@ -27,5 +27,5 @@ export default {
   state,
   mutations,
   actions,
-  getters
+  getters,
 };

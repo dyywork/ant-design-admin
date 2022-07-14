@@ -38,7 +38,7 @@
     ...reactive(routes),
     ...computed(() => store.state.router.routes).value,
   ];
-  const menuMode = computed(() => store.getters['setting/layout'])
+  const menuMode = computed(() => store.getters['setting/layout']);
   const selectedKeys = ref<any>([]);
   const openKeys = ref(['/admin']);
   const handleMenu = ({ key }: any) => {
@@ -51,8 +51,6 @@
 </script>
 
 <style scoped lang="less">
-
-
   .site-layout .site-layout-background {
     background: #fff;
   }

@@ -17,7 +17,7 @@
     >
       <a-form-item label="Layout">
         <div class="color-content">
-          <a-switch v-model:checked="checked" @change='layoutChange'/>
+          <a-switch v-model:checked="checked" @change="layoutChange" />
         </div>
       </a-form-item>
       <a-form-item label="主题色">
@@ -75,8 +75,8 @@
       layoutChange(val) {
         this.$store.dispatch({
           type: 'setting/setLayout',
-          layout: val? 'horizontal' : 'inline'
-        })
+          layout: val ? 'horizontal' : 'inline',
+        });
       },
       onClose() {
         this.visible = !this.visible;

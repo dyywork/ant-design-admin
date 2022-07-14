@@ -7,8 +7,8 @@ const state = {
 };
 
 const getters = {
-  layout: (state: any) => state.layout
-}
+  layout: (state: any) => state.layout,
+};
 
 const mutations = {
   SET_LAYOUT: (state: StateType, layout: string) => {
