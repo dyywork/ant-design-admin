@@ -6,6 +6,10 @@ const state = {
   open: false,
 };
 
+const getters = {
+  open: (state: any) => state.open,
+}
+
 const mutations = {
   CHANGE_ASIDE: (state: StateType) => {
     state.open = !state.open;
@@ -23,4 +27,5 @@ export default {
   state,
   mutations,
   actions,
+  getters
 };

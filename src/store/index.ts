@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-import getters from './getters';
 
 const modulesFiles = import.meta.globEager('./modules/**/*.ts');
 const modules = Object.keys(modulesFiles).reduce(
@@ -14,5 +13,4 @@ const modules = Object.keys(modulesFiles).reduce(
 
 export default createStore({
   modules,
-  getters,
 });

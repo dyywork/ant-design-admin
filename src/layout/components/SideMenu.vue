@@ -1,30 +1,27 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" collapsible>
-    <div class="logo"></div>
-    <a-menu
-      v-model:selectedKeys="selectedKeys"
-      v-model:openKeys="openKeys"
-      theme="dark"
-      mode="inline"
-      @click="handleMenu"
-    >
-      <template v-for="item in menuList" :key="item.path">
-        <template v-if="!item.meta.hidden">
-          <template v-if="item.meta.hiddenSubMenu">
-            <a-menu-item :key="item.path">
-              <template v-if="item.meta?.icon" #icon>
-                <i :class="['iconfont', item.meta.icon]" />
-              </template>
-              {{ item.meta.title }}
-            </a-menu-item>
-          </template>
-          <template v-else>
-            <sub-menu :key="item.path" :menu-info="item" />
-          </template>
+  <a-menu
+    v-model:selectedKeys="selectedKeys"
+    v-model:openKeys="openKeys"
+    theme="dark"
+    :mode="menuMode"
+    @click="handleMenu"
+  >
+    <template v-for="item in menuList" :key="item.path">
+      <template v-if="!item.meta.hidden">
+        <template v-if="item.meta.hiddenSubMenu">
+          <a-menu-item :key="item.path">
+            <template v-if="item.meta?.icon" #icon>
+              <i :class="['iconfont', item.meta.icon]" />
+            </template>
+            {{ item.meta.title }}
+          </a-menu-item>
+        </template>
+        <template v-else>
+          <sub-menu :key="item.path" :menu-info="item" />
         </template>
       </template>
-    </a-menu>
-  </a-layout-sider>
+    </template>
+  </a-menu>
 </template>
 
 <script lang="ts" setup>
@@ -41,7 +38,7 @@
     ...reactive(routes),
     ...computed(() => store.state.router.routes).value,
   ];
-  const collapsed = ref(false);
+  const menuMode = computed(() => store.getters['setting/layout'])
   const selectedKeys = ref<any>([]);
   const openKeys = ref(['/admin']);
   const handleMenu = ({ key }: any) => {
@@ -54,11 +51,7 @@
 </script>
 
 <style scoped lang="less">
-  .logo {
-    height: 32px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
-  }
+
 
   .site-layout .site-layout-background {
     background: #fff;

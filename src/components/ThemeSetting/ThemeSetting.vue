@@ -15,6 +15,11 @@
       :model="form"
       :wrapper-col="{ span: 14, offset: 0 }"
     >
+      <a-form-item label="Layout">
+        <div class="color-content">
+          <a-switch v-model:checked="checked" @change='layoutChange'/>
+        </div>
+      </a-form-item>
       <a-form-item label="主题色">
         <div class="color-content">
           <div
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-  import { defineComponent, compile } from 'vue';
+  import { defineComponent } from 'vue';
   import {
     SettingOutlined,
     CloseOutlined,
@@ -58,14 +63,21 @@
     components: { SettingOutlined, CloseOutlined, CheckOutlined },
     data() {
       return {
-        visible: true,
+        visible: false,
         form: {},
         colorList: ['#1890ff', '#f5222d', '#fa541c'],
         color: '#1890ff',
+        checked: false,
       };
     },
     mounted() {},
     methods: {
+      layoutChange(val) {
+        this.$store.dispatch({
+          type: 'setting/setLayout',
+          layout: val? 'horizontal' : 'inline'
+        })
+      },
       onClose() {
         this.visible = !this.visible;
       },

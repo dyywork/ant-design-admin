@@ -2,7 +2,7 @@
 *@update:2022/7/1 14:27 */
 
 <template>
-  <a-layout-header style="background: #fff; padding: 0">header</a-layout-header>
+  <div>header</div>
 </template>
 
 <script>
