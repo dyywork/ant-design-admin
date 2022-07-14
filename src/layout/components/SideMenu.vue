@@ -2,7 +2,7 @@
   <a-menu
     v-model:selectedKeys="selectedKeys"
     v-model:openKeys="openKeys"
-    theme="dark"
+    :theme="theme"
     :mode="menuMode"
     @click="handleMenu"
   >
@@ -39,14 +39,19 @@
     ...computed(() => store.state.router.routes).value,
   ];
   const menuMode = computed(() => store.getters['setting/layout']);
+  const theme = computed(() => store.getters['setting/theme']);
   const selectedKeys = ref<any>([]);
-  const openKeys = ref(['/admin']);
+  const openKeys = ref([]);
   const handleMenu = ({ key }: any) => {
     router.push({ path: key });
   };
   onMounted(() => {
     const { path } = route;
-    selectedKeys.value.push(path);
+    if (path === '/home') {
+      selectedKeys.value.push('/');
+    } else {
+      selectedKeys.value.push(path);
+    }
   });
 </script>
 

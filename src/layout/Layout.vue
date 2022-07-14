@@ -4,9 +4,20 @@
       v-if="layout === 'inline'"
       v-model:collapsed="collapsed"
       collapsible
+      :style="{ background: theme === 'light' ? '#ffffff' : '#001529' }"
     >
       <div class="logo"></div>
       <side-menu v-if="layout === 'inline'"></side-menu>
+      <template #trigger>
+        <div
+          :style="{
+            background: theme === 'light' ? '#ffffff' : '#001529',
+            color: theme === 'light' ? '#001529' : '#fff',
+          }"
+        >
+          123
+        </div>
+      </template>
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="layout-container-header">
@@ -44,6 +55,7 @@
 
   // 获取布局
   const layout = computed(() => store.getters['setting/layout']);
+  const theme = computed(() => store.getters['setting/theme']);
 </script>
 
 <style scoped lang="less">

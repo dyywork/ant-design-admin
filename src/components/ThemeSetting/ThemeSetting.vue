@@ -15,6 +15,11 @@
       :model="form"
       :wrapper-col="{ span: 14, offset: 0 }"
     >
+      <a-form-item label="MenuTheme">
+        <div class="color-content">
+          <a-switch v-model:checked="checkedTheme" @change="menuThemeChange" />
+        </div>
+      </a-form-item>
       <a-form-item label="Layout">
         <div class="color-content">
           <a-switch v-model:checked="checked" @change="layoutChange" />
@@ -68,6 +73,7 @@
         colorList: ['#1890ff', '#f5222d', '#fa541c'],
         color: '#1890ff',
         checked: false,
+        checkedTheme: false,
       };
     },
     mounted() {},
@@ -76,6 +82,12 @@
         this.$store.dispatch({
           type: 'setting/setLayout',
           layout: val ? 'horizontal' : 'inline',
+        });
+      },
+      menuThemeChange(val) {
+        this.$store.dispatch({
+          type: 'setting/setTheme',
+          theme: val ? 'dark' : 'light',
         });
       },
       onClose() {
