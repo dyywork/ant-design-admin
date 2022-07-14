@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <a-button type="primary" @click="addCount">count++</a-button>
+  <a-button type="primary" @click="addCount"> count++ </a-button>
   <a>{{ count }}</a>
 </template>
 

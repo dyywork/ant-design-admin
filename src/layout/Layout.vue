@@ -41,6 +41,7 @@
   const store = useStore();
   // 是否展开
   const collapsed = ref(false);
+
   // 获取布局
   const layout = computed(() => store.getters['setting/layout']);
 </script>

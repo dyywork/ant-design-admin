@@ -1,6 +1,6 @@
 <template>
   <a-config-provider component-size="small">
-    <router-view></router-view>
+    <router-view />
   </a-config-provider>
 </template>
 <script lang="ts">
