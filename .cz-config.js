@@ -11,7 +11,15 @@ module.exports = {
     { value: '🔧', name: '工具:    开发工具变动(构建、脚手架工具等)' },
     { value: '⏪', name: '回滚:    代码回退' },
   ],
-  scopes: [{ name: 'component' }],
+  scopes: [
+    { name: 'feat' },
+    { name: 'add' },
+    { name: 'chore' },
+    { name: 'change' },
+    { name: 'fix' },
+    { name: 'style' },
+    { name: 'revert' },
+  ],
   messages: {
     type: '选择一种你的提交类型:',
     scope: '选择一个scope (可选):',
