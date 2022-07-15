@@ -87,7 +87,7 @@
       menuThemeChange(val) {
         this.$store.dispatch({
           type: 'setting/setTheme',
-          theme: val ? 'dark' : 'light',
+          theme: !val ? 'dark' : 'light',
         });
       },
       onClose() {

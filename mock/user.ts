@@ -39,6 +39,46 @@ Mock.mock('/api/menu/list', 'post', () => {
           },
         ],
       },
+      {
+        path: '/test',
+        component: '',
+        name: 'centerUserTest',
+        meta: { title: '测试用例', icon: 'icon-yonghu' },
+        children: [
+          {
+            path: '/test/center',
+            name: 'CenterTest',
+            component: 'EmptyLayout',
+            meta: { title: 'CenterTest' },
+          },
+          {
+            path: 'test/table',
+            name: 'TableTest',
+            component: '/Table/Table.vue',
+            meta: { title: 'TableTest' },
+          },
+        ],
+      },
+      {
+        path: '/test1',
+        component: '',
+        name: 'centerUserTest1',
+        meta: { title: '测试用例1', icon: 'icon-yonghu' },
+        children: [
+          {
+            path: '/test1/center',
+            name: 'CenterTest1',
+            component: 'EmptyLayout',
+            meta: { title: 'CenterTest' },
+          },
+          {
+            path: 'test1/table',
+            name: 'TableTest1',
+            component: '/Table/Table.vue',
+            meta: { title: 'TableTest' },
+          },
+        ],
+      },
     ],
   };
 });

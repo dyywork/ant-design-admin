@@ -3,6 +3,7 @@
     <a-layout-sider
       v-if="layout === 'inline'"
       v-model:collapsed="collapsed"
+      :collapsed-width="60"
       collapsible
       :style="{ background: theme === 'light' ? '#ffffff' : '#001529' }"
     >
@@ -10,22 +11,35 @@
       <side-menu v-if="layout === 'inline'"></side-menu>
       <template #trigger>
         <div
+          class="layout-container-trigger"
           :style="{
             background: theme === 'light' ? '#ffffff' : '#001529',
             color: theme === 'light' ? '#001529' : '#fff',
           }"
         >
-          123
+          <menu-fold-outlined v-if="!collapsed" style="font-size: 18px" />
+          <menu-unfold-outlined v-else style="font-size: 18px" />
         </div>
       </template>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header class="layout-container-header">
+      <a-layout-header
+        class="layout-container-header"
+        :style="{
+          background:
+            layout === 'inline'
+              ? '#ffffff'
+              : theme !== 'light'
+              ? '#001529'
+              : '#fff',
+        }"
+      >
         <header-container v-if="layout === 'inline'" />
-        <template v-else>
+        <div v-else class="layout-container-header-horizontal">
           <div class="logo-header"></div>
           <side-menu></side-menu>
-        </template>
+          <div class="layout-container-header-horizontal-right"></div>
+        </div>
       </a-layout-header>
       <a-layout-content class="layout-container-content">
         <a-breadcrumb>
@@ -33,7 +47,11 @@
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
         <div>
-          <router-view></router-view>
+          <router-view v-slot="{ Component }">
+            <keep-alive :include="['Table']">
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
@@ -47,6 +65,7 @@
   import SideMenu from './components/SideMenu.vue';
   import HeaderContainer from './components/HeaderContainer.vue';
   import ThemeSetting from '@/components/ThemeSetting/ThemeSetting.vue';
+  import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
   import { ref, computed } from 'vue';
   import { useStore } from 'vuex';
   const store = useStore();
@@ -63,18 +82,34 @@
     min-height: 100vh;
     .layout-container-header {
       display: flex;
-      background: #fff;
       height: 48px;
       line-height: 48px;
       padding: 0;
-      .logo-header {
-        height: 48px;
-        width: 200px;
-        background: rgba(117, 34, 34, 0.3);
+      .layout-container-header-horizontal {
+        display: flex;
+        width: 100%;
+        ::v-deep(.ant-menu) {
+          flex-grow: 1;
+        }
+        .logo-header {
+          height: 20px;
+          margin: 14px;
+          flex-basis: 172px;
+          background: rgba(255, 255, 255, 0.3);
+        }
+        .layout-container-header-horizontal-right {
+          flex-basis: 100px;
+        }
       }
     }
     .layout-container-content {
       margin: 0 16px;
+    }
+    .layout-container-trigger {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-left: 20px;
     }
   }
   .logo {
