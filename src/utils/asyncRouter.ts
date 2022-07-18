@@ -1,7 +1,9 @@
 import Layout from '@/layout/Layout.vue';
 import EmptyLayout from '@/layout/EmptyLayout.vue';
 const modules = import.meta.glob('../views/**/*.vue');
+import store from '@/store';
 
+let keepAliveNames: any = [];
 export function asyncRoutes(routes: any[]) {
   routes.map(item => {
     if (!item.component) {
@@ -15,9 +17,13 @@ export function asyncRoutes(routes: any[]) {
         item.component = EmptyLayout;
         asyncRoutes(item.children);
       } else {
+        if (item.meta?.keepAlive) {
+          keepAliveNames.push(item.name);
+        }
         item.component = modules[`../views${item.component}`];
       }
     }
   });
+  store.dispatch('router/setKeepAliveNames', keepAliveNames);
   return routes;
 }

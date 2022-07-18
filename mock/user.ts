@@ -35,7 +35,7 @@ Mock.mock('/api/menu/list', 'post', () => {
             path: '/table',
             name: 'Table',
             component: '/Table/Table.vue',
-            meta: { title: 'Table' },
+            meta: { title: 'Table', keepAlive: true },
           },
         ],
       },
@@ -48,7 +48,7 @@ Mock.mock('/api/menu/list', 'post', () => {
           {
             path: '/test/center',
             name: 'CenterTest',
-            component: 'EmptyLayout',
+            component: '/Center/Center.vue',
             meta: { title: 'CenterTest' },
           },
           {
@@ -68,7 +68,7 @@ Mock.mock('/api/menu/list', 'post', () => {
           {
             path: '/test1/center',
             name: 'CenterTest1',
-            component: 'EmptyLayout',
+            component: '/Center/Center.vue',
             meta: { title: 'CenterTest' },
           },
           {

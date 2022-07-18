@@ -48,7 +48,7 @@
         </a-breadcrumb>
         <div>
           <router-view v-slot="{ Component }">
-            <keep-alive :include="['Table']">
+            <keep-alive :include="keepAliveNames">
               <component :is="Component" />
             </keep-alive>
           </router-view>
@@ -68,6 +68,8 @@
   import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
   import { ref, computed } from 'vue';
   import { useStore } from 'vuex';
+  import { useRoute } from 'vue-router';
+
   const store = useStore();
   // 是否展开
   const collapsed = ref(false);
@@ -75,6 +77,12 @@
   // 获取布局
   const layout = computed(() => store.getters['setting/layout']);
   const theme = computed(() => store.getters['setting/theme']);
+
+  // keepAlive 缓存
+  const keepAliveNames = computed(() => store.getters['router/keepAliveNames']);
+
+  // 路由
+  const route = useRoute();
 </script>
 
 <style scoped lang="less">
