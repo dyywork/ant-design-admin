@@ -2,14 +2,23 @@
 *@update:2022/7/15 16:32 */
 
 <template>
-  <div></div>
+  <a-tabs></a-tabs>
 </template>
 
 <script>
   import { defineComponent } from 'vue';
+  import { mapGetters } from 'vuex';
 
   export default defineComponent({
     name: 'MultiTabs',
+    computed: {
+      ...mapGetters({
+        multiTabs: 'router/multiTabs',
+      }),
+    },
+    created() {
+      console.log(this.multiTabs);
+    },
   });
 </script>
 

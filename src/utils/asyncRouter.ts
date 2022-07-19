@@ -27,3 +27,19 @@ export function asyncRoutes(routes: any[]) {
   store.dispatch('router/setKeepAliveNames', keepAliveNames);
   return routes;
 }
+
+// 点击侧边栏获取完整路由信息
+let routeItem = {};
+export function getMenuItem(routes: any[], key: string) {
+  routes.map(item => {
+    if (item.path === key) {
+      routeItem = item;
+    } else {
+      if (item.children && item.children.length > 0) {
+        // 多级嵌套路由处理
+        getMenuItem(item.children, key);
+      }
+    }
+  });
+  return routeItem;
+}
