@@ -6,7 +6,7 @@ const constantRoutes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/Login/Login.vue'),
-    meta: { title: 'Table', icon: 'el-icon-menu' },
+    meta: { title: 'Table', icon: 'el-icon-menu', noTabs: true },
   },
 ];
 

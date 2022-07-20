@@ -1,21 +1,35 @@
 import { getMenuList } from '@/api/user';
 import { asyncRoutes } from '@/utils/asyncRouter';
+import router from '@/router/router';
+
+interface MultiItem {
+  fullPath: string;
+  path: string;
+  meta: any;
+  name: string;
+}
 
 interface StateType {
   routes: any; // 初始化路由
   keepAliveNames: []; // keepAlive页面
-  multiTabs: []; // tabs
+  multiTabs: [MultiItem]; // tabs
+  tabsActiveKey: string; // 高亮tabs
+  selectedKeys: any[]; // menu 选中
 }
 
 const state = {
   routes: [],
   keepAliveNames: [],
   multiTabs: [],
+  tabsActiveKey: '/home',
+  selectedKeys: ['/'],
 };
 
 const getters = {
   keepAliveNames: (state: any) => state.keepAliveNames,
   multiTabs: (state: any) => state.multiTabs,
+  tabsActiveKey: (state: any) => state.tabsActiveKey,
+  selectedKeys: (state: any) => state.selectedKeys,
 };
 
 const mutations = {
@@ -27,9 +41,36 @@ const mutations = {
     state.keepAliveNames = keepAliveNames;
   },
   // 修改multiTabs
-  SET_MULTI_TABS: (state: StateType, multiTabs: []) => {
-    console.log(multiTabs);
-    state.multiTabs = multiTabs;
+  SET_MULTI_TABS: (state: StateType, tabsItem: MultiItem) => {
+    const fullPathList = state.multiTabs.map(
+      (item: MultiItem) => item.fullPath
+    );
+    state.tabsActiveKey = tabsItem.fullPath;
+    if (!fullPathList.includes(tabsItem.fullPath)) {
+      state.multiTabs.push(tabsItem);
+    }
+  },
+  // 删除tabs
+  REMOVE_MULTI_TABS: (state: StateType, key: string) => {
+    state.multiTabs.forEach((item: MultiItem, index: number) => {
+      const multiTabsLen = state.multiTabs.length - 1;
+      if (state.tabsActiveKey === key && item.fullPath === key) {
+        if (multiTabsLen === index) {
+          router.push(state.multiTabs[index - 1].fullPath);
+          state.tabsActiveKey = state.multiTabs[index - 1].fullPath;
+        } else {
+          router.push(state.multiTabs[index + 1].fullPath);
+          state.tabsActiveKey = state.multiTabs[index + 1].fullPath;
+        }
+      }
+      if (item.fullPath === key) {
+        state.multiTabs.splice(index, 1);
+      }
+    });
+  },
+  // 设置tabs 选中
+  SET_ACTIVE_TAB: (state: StateType, key: string) => {
+    state.tabsActiveKey = key;
   },
 };
 
@@ -47,7 +88,6 @@ const actions = {
   },
   // 异步修改commit 公用方法
   setCommit({ commit }: any, payload: any) {
-    console.log(payload);
     commit(payload.commit, payload.data);
   },
 };

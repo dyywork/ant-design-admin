@@ -41,23 +41,18 @@
   ];
   const menuMode = computed(() => store.getters['setting/layout']);
   const theme = computed(() => store.getters['setting/theme']);
-  const selectedKeys = ref<any>([]);
+  const selectedKeys = computed(() => store.getters['router/selectedKeys']);
   const openKeys = ref([]);
-  // tabs
-  const multiTabs = computed(() => store.getters['router/multiTabs']);
 
   // 点击跳转
   const handleMenu = ({ key, item, keyPath }: any) => {
-    console.log(key);
-    console.log(multiTabs.value);
-    console.log(getMenuItem(menuList, key));
-    store.dispatch({
-      type: 'router/setCommit',
-      commit: 'SET_MULTI_TABS',
-      data: [...multiTabs.value, getMenuItem(menuList, key)],
-    });
+    const itemMenu: any = getMenuItem(menuList, key);
     openKeys.value = keyPath;
-    router.push({ path: key });
+    if (itemMenu.name === 'Center1') {
+      router.push({ path: '/admin/center/123' });
+    } else {
+      router.push({ path: key });
+    }
   };
   onMounted(() => {
     const { path } = route;

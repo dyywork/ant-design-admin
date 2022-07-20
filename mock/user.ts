@@ -18,7 +18,7 @@ Mock.mock('/api/menu/list', 'post', () => {
             meta: { title: 'Center' },
             children: [
               {
-                path: '/admin/center',
+                path: '/admin/center/:id',
                 name: 'Center1',
                 component: '/Center/Center.vue',
                 meta: { title: 'Center1' },

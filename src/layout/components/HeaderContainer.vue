@@ -2,7 +2,8 @@
 *@update:2022/7/1 14:27 */
 
 <template>
-  <div>header</div>
+  <div class="header-container">header</div>
+  <slot name="tabs"></slot>
 </template>
 
 <script>
@@ -11,4 +12,4 @@
   };
 </script>
 
-<style scoped></style>
+<style scoped lang="less"></style>

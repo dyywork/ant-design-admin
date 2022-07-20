@@ -32,9 +32,15 @@
               : theme !== 'light'
               ? '#001529'
               : '#fff',
+          height: layout === 'inline' ? '81px' : '50px',
+          lineHeight: layout === 'inline' ? '45px' : '48px',
         }"
       >
-        <header-container v-if="layout === 'inline'" />
+        <header-container v-if="layout === 'inline'">
+          <template #tabs>
+            <multi-tabs />
+          </template>
+        </header-container>
         <div v-else class="layout-container-header-horizontal">
           <div class="logo-header"></div>
           <side-menu></side-menu>
@@ -47,7 +53,7 @@
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
         <div>
-          <router-view v-slot="{ Component }">
+          <router-view v-if="isLoad" v-slot="{ Component }">
             <keep-alive :include="keepAliveNames">
               <component :is="Component" />
             </keep-alive>
@@ -65,8 +71,9 @@
   import SideMenu from './components/SideMenu.vue';
   import HeaderContainer from './components/HeaderContainer.vue';
   import ThemeSetting from '@/components/ThemeSetting/ThemeSetting.vue';
+  import MultiTabs from './components/MultiTabs.vue';
   import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
-  import { ref, computed } from 'vue';
+  import { ref, computed, provide, nextTick } from 'vue';
   import { useStore } from 'vuex';
   import { useRoute } from 'vue-router';
 
@@ -83,6 +90,16 @@
 
   // 路由
   const route = useRoute();
+
+  // 刷新
+  const isLoad = ref(true);
+  const setIsLoad = () => {
+    isLoad.value = false;
+    nextTick(() => {
+      isLoad.value = true;
+    });
+  };
+  provide('setIsLoad', setIsLoad);
 </script>
 
 <style scoped lang="less">
@@ -90,8 +107,7 @@
     min-height: 100vh;
     .layout-container-header {
       display: flex;
-      height: 48px;
-      line-height: 48px;
+      flex-direction: column;
       padding: 0;
       .layout-container-header-horizontal {
         display: flex;
