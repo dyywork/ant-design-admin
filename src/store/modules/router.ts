@@ -14,7 +14,8 @@ interface StateType {
   keepAliveNames: []; // keepAlive页面
   multiTabs: [MultiItem]; // tabs
   tabsActiveKey: string; // 高亮tabs
-  selectedKeys: any[]; // menu 选中
+  selectedKeys: any; // menu 选中
+  openKeys: any; // menu 选中
 }
 
 const state = {
@@ -23,6 +24,7 @@ const state = {
   multiTabs: [],
   tabsActiveKey: '/home',
   selectedKeys: ['/'],
+  openKeys: ['/'],
 };
 
 const getters = {
@@ -30,6 +32,7 @@ const getters = {
   multiTabs: (state: any) => state.multiTabs,
   tabsActiveKey: (state: any) => state.tabsActiveKey,
   selectedKeys: (state: any) => state.selectedKeys,
+  openKeys: (state: any) => state.openKeys,
 };
 
 const mutations = {
@@ -40,6 +43,11 @@ const mutations = {
   SET_KEEP_ALIVE_NAMES: (state: StateType, keepAliveNames: []) => {
     state.keepAliveNames = keepAliveNames;
   },
+  // 获取menuActive
+  SET_MENU_ACTIVE: (state: StateType, item: any) => {
+    state.selectedKeys = [item.selectedKeys];
+    state.openKeys = item.openKeys;
+  },
   // 修改multiTabs
   SET_MULTI_TABS: (state: StateType, tabsItem: MultiItem) => {
     const fullPathList = state.multiTabs.map(
@@ -47,7 +55,13 @@ const mutations = {
     );
     state.tabsActiveKey = tabsItem.fullPath;
     if (!fullPathList.includes(tabsItem.fullPath)) {
-      state.multiTabs.push(tabsItem);
+      state.multiTabs.push({
+        ...tabsItem,
+        ...{
+          openKeys: state.openKeys,
+          selectedKeys: state.selectedKeys,
+        },
+      });
     }
   },
   // 删除tabs
@@ -58,9 +72,13 @@ const mutations = {
         if (multiTabsLen === index) {
           router.push(state.multiTabs[index - 1].fullPath);
           state.tabsActiveKey = state.multiTabs[index - 1].fullPath;
+          state.selectedKeys = state.multiTabs[index - 1].selectedKeys;
+          state.openKeys = state.multiTabs[index - 1].openKeys;
         } else {
           router.push(state.multiTabs[index + 1].fullPath);
           state.tabsActiveKey = state.multiTabs[index + 1].fullPath;
+          state.selectedKeys = state.multiTabs[index + 1].selectedKeys;
+          state.openKeys = state.multiTabs[index + 1].openKeys;
         }
       }
       if (item.fullPath === key) {
@@ -70,6 +88,12 @@ const mutations = {
   },
   // 设置tabs 选中
   SET_ACTIVE_TAB: (state: StateType, key: string) => {
+    state.multiTabs.forEach((item: any) => {
+      if (item.path === key) {
+        state.selectedKeys = item.selectedKeys;
+        state.openKeys = item.openKeys;
+      }
+    });
     state.tabsActiveKey = key;
   },
 };

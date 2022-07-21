@@ -42,12 +42,19 @@
   const menuMode = computed(() => store.getters['setting/layout']);
   const theme = computed(() => store.getters['setting/theme']);
   const selectedKeys = computed(() => store.getters['router/selectedKeys']);
-  const openKeys = ref([]);
+  const openKeys = computed(() => store.getters['router/openKeys']);
 
   // 点击跳转
   const handleMenu = ({ key, item, keyPath }: any) => {
     const itemMenu: any = getMenuItem(menuList, key);
-    openKeys.value = keyPath;
+    store.dispatch({
+      type: 'router/setCommit',
+      commit: 'SET_MENU_ACTIVE',
+      data: {
+        selectedKeys: key,
+        openKeys: keyPath,
+      },
+    });
     if (itemMenu.name === 'Center1') {
       router.push({ path: '/admin/center/123' });
     } else {
@@ -55,12 +62,23 @@
     }
   };
   onMounted(() => {
-    const { path } = route;
-    if (path === '/home') {
-      selectedKeys.value.push('/');
+    let path = '';
+    let openKeys = [];
+    if (route.meta.hiddenSubMenu) {
+      path = route.matched[0].path;
+      openKeys = [path];
     } else {
-      selectedKeys.value.push(path);
+      path = route.path;
+      openKeys = route.matched.map(item => item.path);
     }
+    store.dispatch({
+      type: 'router/setCommit',
+      commit: 'SET_MENU_ACTIVE',
+      data: {
+        selectedKeys: path,
+        openKeys: openKeys,
+      },
+    });
   });
 </script>
 

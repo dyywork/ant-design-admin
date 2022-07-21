@@ -52,7 +52,7 @@ Mock.mock('/api/menu/list', 'post', () => {
             meta: { title: 'CenterTest' },
           },
           {
-            path: 'test/table',
+            path: '/test/table',
             name: 'TableTest',
             component: '/Table/Table.vue',
             meta: { title: 'TableTest' },
@@ -60,22 +60,22 @@ Mock.mock('/api/menu/list', 'post', () => {
         ],
       },
       {
-        path: '/test1',
+        path: '/tests',
         component: '',
         name: 'centerUserTest1',
         meta: { title: '测试用例1', icon: 'icon-yonghu' },
         children: [
           {
-            path: '/test1/center',
+            path: '/tests/center',
             name: 'CenterTest1',
             component: '/Center/Center.vue',
-            meta: { title: 'CenterTest' },
+            meta: { title: 'CenterTest1' },
           },
           {
-            path: 'test1/table',
+            path: '/tests/table',
             name: 'TableTest1',
             component: '/Table/Table.vue',
-            meta: { title: 'TableTest' },
+            meta: { title: 'TableTest1' },
           },
         ],
       },
