@@ -7,7 +7,7 @@
       collapsible
       :style="{ background: theme === 'light' ? '#ffffff' : '#001529' }"
     >
-      <div class="logo"></div>
+      <div class="logo">{{ size }}</div>
       <side-menu v-if="layout === 'inline'"></side-menu>
       <template #trigger>
         <div
@@ -84,6 +84,7 @@
   // 获取布局
   const layout = computed(() => store.getters['setting/layout']);
   const theme = computed(() => store.getters['setting/theme']);
+  const size = computed(() => store.getters['setting/size']);
 
   // keepAlive 缓存
   const keepAliveNames = computed(() => store.getters['router/keepAliveNames']);

@@ -23,7 +23,7 @@
         name="password"
         :rules="[{ required: true, message: 'Please input your password!' }]"
       >
-        <a-input-password v-model:value="formState.password" size="small" />
+        <a-input-password v-model:value="formState.password" :size="size" />
       </a-form-item>
 
       <a-form-item name="remember" :wrapper-col="{ offset: 8, span: 16 }">
@@ -39,7 +39,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
   import store from '@/store';
   const router = useRouter();
@@ -48,6 +48,9 @@
     password: '123',
     remember: '',
   });
+
+  const size = computed(() => store.getters['setting/size']);
+
   const onFinish = async () => {
     await store.dispatch('user/setToken', '1231');
     router.push({ name: 'Home' });

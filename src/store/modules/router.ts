@@ -3,6 +3,8 @@ import { asyncRoutes } from '@/utils/asyncRouter';
 import router from '@/router/router';
 
 interface MultiItem {
+  openKeys: any;
+  selectedKeys: any;
   fullPath: string;
   path: string;
   meta: any;

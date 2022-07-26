@@ -13,7 +13,7 @@
     <a-form
       layout="vertical"
       :model="form"
-      :wrapper-col="{ span: 14, offset: 0 }"
+      :wrapper-col="{ span: 24, offset: 0 }"
     >
       <a-form-item label="MenuTheme">
         <div class="color-content">
@@ -37,6 +37,13 @@
             <CheckOutlined v-if="color === item" style="color: #ffffff" />
           </div>
         </div>
+      </a-form-item>
+      <a-form-item label="componentSize">
+        <a-radio-group v-model:value="componentSize" @change="handleSize">
+          <a-radio-button value="small">Small</a-radio-button>
+          <a-radio-button value="middle">Middle</a-radio-button>
+          <a-radio-button value="large">Large</a-radio-button>
+        </a-radio-group>
       </a-form-item>
     </a-form>
     <template #handle>
@@ -70,14 +77,24 @@
       return {
         visible: false,
         form: {},
-        colorList: ['#1890ff', '#f5222d', '#fa541c'],
+        colorList: ['#1890ff', '#f5222d', '#3CB371', '#FFD700', '#FF69B4'],
         color: '#1890ff',
         checked: false,
         checkedTheme: false,
+        componentSize: 'small',
       };
     },
     mounted() {},
     methods: {
+      handleSize(e) {
+        this.$store.dispatch({
+          type: 'setting/setState',
+          payload: {
+            field: 'size',
+            value: e.target.value,
+          },
+        });
+      },
       layoutChange(val) {
         this.$store.dispatch({
           type: 'setting/setLayout',
