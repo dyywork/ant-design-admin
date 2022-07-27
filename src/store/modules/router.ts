@@ -15,7 +15,7 @@ interface StateType {
   routes: any; // 初始化路由
   keepAliveNames: []; // keepAlive页面
   multiTabs: [MultiItem]; // tabs
-  tabsActiveKey: string; // 高亮tabs
+  tabsActiveKey: any; // 高亮tabs
   selectedKeys: any; // menu 选中
   openKeys: any; // menu 选中
 }
@@ -56,14 +56,9 @@ const mutations = {
       (item: MultiItem) => item.fullPath
     );
     state.tabsActiveKey = tabsItem.fullPath;
+    state.openKeys = tabsItem.openKeys;
     if (!fullPathList.includes(tabsItem.fullPath)) {
-      state.multiTabs.push({
-        ...tabsItem,
-        ...{
-          openKeys: state.openKeys,
-          selectedKeys: state.selectedKeys,
-        },
-      });
+      state.multiTabs.push(tabsItem);
     }
   },
   // 删除tabs
@@ -93,7 +88,6 @@ const mutations = {
     state.multiTabs.forEach((item: any) => {
       if (item.path === key) {
         state.selectedKeys = item.selectedKeys;
-        state.openKeys = item.openKeys;
       }
     });
     state.tabsActiveKey = key;

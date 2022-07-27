@@ -9,12 +9,25 @@
           <UserOutlined />
         </template>
       </a-avatar>
+
+      <a-dropdown>
+        <span class="ant-dropdown-link"> admin </span>
+        <template #overlay>
+          <a-menu @click="handleAdminChange">
+            <a-menu-item key="center"> 个人中心</a-menu-item>
+            <a-menu-item key="setting"> 设置 </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
       <a-dropdown placement="bottomLeft">
         <span class="ant-dropdown-link">
           <global-outlined />
         </span>
         <template #overlay>
-          <a-menu @click="handleVisibleChange">
+          <a-menu
+            v-model:selectedKeys="selectedKeys"
+            @click="handleVisibleChange"
+          >
             <a-menu-item key="zhCN"> 简体中文 </a-menu-item>
             <a-menu-item key="enUS"> 英文 </a-menu-item>
           </a-menu>
@@ -27,12 +40,23 @@
 
 <script>
   import { UserOutlined, GlobalOutlined } from '@ant-design/icons-vue';
-  import { ConfigProvider } from 'ant-design-vue';
   export default {
     name: 'HeaderContainer',
     components: { UserOutlined, GlobalOutlined },
+    data() {
+      return {
+        selectedKeys: ['zhCN'],
+      };
+    },
     methods: {
+      handleAdminChange(e) {
+        if (e.key === 'center') {
+          this.$router.push('/admin/center/123');
+        }
+      },
       handleVisibleChange(e) {
+        this.selectedKeys = [];
+        this.selectedKeys.push(e.key);
         this.$store.dispatch({
           type: 'setting/setState',
           payload: {

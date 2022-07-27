@@ -16,13 +16,13 @@ export const routes: Array<RouteRecordRaw> = [
     redirect: '/home',
     component: Layout,
     name: 'Layout',
-    meta: { title: '内容', icon: 'icon-shouye', hiddenSubMenu: true },
+    meta: { title: '首页', icon: 'icon-shouye', hiddenSubMenu: true },
     children: [
       {
         path: '/home',
         name: 'Home',
         component: () => import('@/views/Home/Home.vue'),
-        meta: { title: 'Home' },
+        meta: { title: '首页' },
       },
     ],
   },
@@ -30,6 +30,7 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/error',
     redirect: '/404',
     component: Layout,
+    name: 'Error',
     meta: {
       title: '错误页面',
       icon: 'el-icon-location',

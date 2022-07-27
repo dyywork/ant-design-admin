@@ -22,7 +22,7 @@
         </div>
       </template>
     </a-layout-sider>
-    <a-layout>
+    <a-layout class="layout-main">
       <a-layout-header
         class="layout-container-header"
         :style="{
@@ -32,7 +32,7 @@
               : theme !== 'light'
               ? '#001529'
               : '#fff',
-          height: layout === 'inline' ? '81px' : '50px',
+          flexBasis: layout === 'inline' ? '81px' : '50px',
           lineHeight: layout === 'inline' ? '45px' : '48px',
         }"
       >
@@ -48,10 +48,6 @@
         </div>
       </a-layout-header>
       <a-layout-content class="layout-container-content">
-        <a-breadcrumb>
-          <a-breadcrumb-item>User</a-breadcrumb-item>
-          <a-breadcrumb-item>Bill</a-breadcrumb-item>
-        </a-breadcrumb>
         <div>
           <router-view v-if="isLoad" v-slot="{ Component }">
             <keep-alive :include="keepAliveNames">
@@ -128,13 +124,42 @@
       }
     }
     .layout-container-content {
-      margin: 0 16px;
+      flex-grow: 1;
+      padding: 0 16px;
+      overflow: hidden;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 13px;
+        height: 13px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.4);
+        background-clip: padding-box;
+        border: 3px solid transparent;
+        border-radius: 7px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-track:hover {
+        background-color: #f8fafc;
+      }
     }
     .layout-container-trigger {
       display: flex;
       align-items: center;
       height: 100%;
       padding-left: 20px;
+    }
+    .layout-main {
+      height: 100vh;
     }
   }
   .logo {

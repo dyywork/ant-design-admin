@@ -36,6 +36,8 @@ async function getTabsList(to: any) {
         path: to.path,
         meta: to.meta,
         name: to.name,
+        openKeys: to.matched.map((item: any) => item.path),
+        selectedKeys: [to.fullPath],
       },
     });
   }

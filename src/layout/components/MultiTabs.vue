@@ -3,7 +3,7 @@
 
 <template>
   <a-tabs
-    v-model:activeKey="tabsActiveKey"
+    v-model:activeKey="activeKey"
     hide-add
     type="editable-card"
     @change="handleChange"
@@ -39,11 +39,24 @@
       CloseOutlined,
     },
     inject: ['setIsLoad'],
+    data() {
+      return {
+        activeKey: [],
+      };
+    },
     computed: {
       ...mapGetters({
         multiTabs: 'router/multiTabs',
         tabsActiveKey: 'router/tabsActiveKey',
       }),
+    },
+    watch: {
+      tabsActiveKey(val) {
+        this.activeKey = val;
+      },
+    },
+    created() {
+      this.activeKey = this.tabsActiveKey;
     },
     methods: {
       refreshPage() {

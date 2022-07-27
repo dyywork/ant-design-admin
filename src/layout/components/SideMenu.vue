@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
   import SubMenu from '@/layout/components/SubMenu.vue';
-  import { ref, computed, onMounted, reactive } from 'vue';
+  import { ref, computed, onMounted, reactive, watch } from 'vue';
   import { useStore } from 'vuex';
   import { useRoute, useRouter } from 'vue-router';
   const route = useRoute();
@@ -41,8 +41,19 @@
   ];
   const menuMode = computed(() => store.getters['setting/layout']);
   const theme = computed(() => store.getters['setting/theme']);
-  const selectedKeys = computed(() => store.getters['router/selectedKeys']);
-  const openKeys = computed(() => store.getters['router/openKeys']);
+  const stateSelectedKeys = computed(
+    () => store.getters['router/selectedKeys']
+  );
+  const stateOpenKeys = computed(() => store.getters['router/openKeys']);
+  const selectedKeys = ref([]);
+  const openKeys = ref([]);
+
+  watch(stateSelectedKeys, val => {
+    selectedKeys.value = val;
+  });
+  watch(stateOpenKeys, val => {
+    openKeys.value = val;
+  });
 
   // 点击跳转
   const handleMenu = ({ key, item, keyPath }: any) => {
