@@ -79,6 +79,66 @@ Mock.mock('/api/menu/list', 'post', () => {
           },
         ],
       },
+      {
+        path: '/tests1',
+        component: '',
+        name: 'centerUserTest11',
+        meta: { title: '测试用例1', icon: 'icon-yonghu' },
+        children: [
+          {
+            path: '/tests/center1',
+            name: 'CenterTest11',
+            component: '/Center/Center.vue',
+            meta: { title: 'CenterTest11' },
+          },
+          {
+            path: '/tests/table1',
+            name: 'TableTest11',
+            component: '/Table/Table.vue',
+            meta: { title: 'TableTest11' },
+          },
+        ],
+      },
+      {
+        path: '/tests12',
+        component: '',
+        name: 'centerUserTest112',
+        meta: { title: '测试用例1', icon: 'icon-yonghu' },
+        children: [
+          {
+            path: '/tests/center12',
+            name: 'CenterTest112',
+            component: '/Center/Center.vue',
+            meta: { title: 'CenterTest112' },
+          },
+          {
+            path: '/tests/table12',
+            name: 'TableTest112',
+            component: '/Table/Table.vue',
+            meta: { title: 'TableTest112' },
+          },
+        ],
+      },
+      {
+        path: '/tests123',
+        component: '',
+        name: 'centerUserTest1123',
+        meta: { title: '测试用例1', icon: 'icon-yonghu' },
+        children: [
+          {
+            path: '/tests/center123',
+            name: 'CenterTest1123',
+            component: '/Center/Center.vue',
+            meta: { title: 'CenterTest112' },
+          },
+          {
+            path: '/tests/table123',
+            name: 'TableTest1123',
+            component: '/Table/Table.vue',
+            meta: { title: 'TableTest1123' },
+          },
+        ],
+      },
     ],
   };
 });

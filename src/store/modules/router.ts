@@ -57,6 +57,7 @@ const mutations = {
     );
     state.tabsActiveKey = tabsItem.fullPath;
     state.openKeys = tabsItem.openKeys;
+    state.selectedKeys = tabsItem.selectedKeys;
     if (!fullPathList.includes(tabsItem.fullPath)) {
       state.multiTabs.push(tabsItem);
     }

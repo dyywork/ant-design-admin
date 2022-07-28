@@ -8,7 +8,7 @@
       :style="{ background: theme === 'light' ? '#ffffff' : '#001529' }"
     >
       <div class="logo">{{ size }}</div>
-      <side-menu v-if="layout === 'inline'"></side-menu>
+      <side-menu class="layout-menu" v-if="layout === 'inline'"></side-menu>
       <template #trigger>
         <div
           class="layout-container-trigger"
@@ -32,12 +32,12 @@
               : theme !== 'light'
               ? '#001529'
               : '#fff',
-          flexBasis: layout === 'inline' ? '81px' : '50px',
+          flexBasis: layout === 'inline' && tabs ? '81px' : '50px',
           lineHeight: layout === 'inline' ? '45px' : '48px',
         }"
       >
         <header-container v-if="layout === 'inline'">
-          <template #tabs>
+          <template v-if="tabs" #tabs>
             <multi-tabs />
           </template>
         </header-container>
@@ -56,9 +56,6 @@
           </router-view>
         </div>
       </a-layout-content>
-      <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
-      </a-layout-footer>
     </a-layout>
     <theme-setting />
   </a-layout>
@@ -81,6 +78,7 @@
   const layout = computed(() => store.getters['setting/layout']);
   const theme = computed(() => store.getters['setting/theme']);
   const size = computed(() => store.getters['setting/size']);
+  const tabs = computed(() => store.getters['setting/tabs']);
 
   // keepAlive 缓存
   const keepAliveNames = computed(() => store.getters['router/keepAliveNames']);
@@ -100,8 +98,34 @@
 </script>
 
 <style scoped lang="less">
+  .scroll-style {
+    &::-webkit-scrollbar {
+      width: 0px;
+      height: 13px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ffffff;
+      background-clip: padding-box;
+      border: 3px solid transparent;
+      border-radius: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #ffffff;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track:hover {
+      background-color: transparent;
+    }
+  }
   .layout-container {
     min-height: 100vh;
+
     .layout-container-header {
       display: flex;
       flex-direction: column;
@@ -123,34 +147,30 @@
         }
       }
     }
+
+    ::v-deep(.ant-layout-sider-children) {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding-bottom: 48px;
+      .layout-menu {
+        width: 100%;
+        flex-grow: 1;
+        overflow: hidden;
+        overflow-y: scroll;
+        .scroll-style();
+      }
+    }
+
     .layout-container-content {
       flex-grow: 1;
       padding: 0 16px;
       overflow: hidden;
       overflow-y: scroll;
-      &::-webkit-scrollbar {
-        width: 13px;
-        height: 13px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.4);
-        background-clip: padding-box;
-        border: 3px solid transparent;
-        border-radius: 7px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: transparent;
-      }
-
-      &::-webkit-scrollbar-track:hover {
-        background-color: #f8fafc;
-      }
+      .scroll-style();
+    }
+    .ant-layout-sider-has-trigger {
+      padding-bottom: 0px;
     }
     .layout-container-trigger {
       display: flex;
@@ -163,7 +183,7 @@
     }
   }
   .logo {
-    height: 32px;
+    flex-basis: 32px;
     margin: 16px;
     background: rgba(255, 255, 255, 0.3);
   }

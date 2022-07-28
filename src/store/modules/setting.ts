@@ -3,6 +3,7 @@ interface StateType {
   theme: string;
   size: string;
   locale: string;
+  tabs: boolean;
 }
 
 const state = {
@@ -10,6 +11,7 @@ const state = {
   theme: 'dark',
   size: 'small',
   locale: 'zhCN',
+  tabs: true,
 };
 
 const getters = {
@@ -17,6 +19,7 @@ const getters = {
   theme: (state: any) => state.theme,
   size: (state: any) => state.size,
   locale: (state: any) => state.locale,
+  tabs: (state: any) => state.tabs,
 };
 
 const mutations = {

@@ -25,6 +25,11 @@
           <a-switch v-model:checked="checked" @change="layoutChange" />
         </div>
       </a-form-item>
+      <a-form-item label="Multi Tabs">
+        <div class="color-content">
+          <a-switch v-model:checked="tabsChecked" @change="tabsChange" />
+        </div>
+      </a-form-item>
       <a-form-item label="主题色">
         <div class="color-content">
           <div
@@ -81,6 +86,7 @@
         color: '#1890ff',
         checked: false,
         checkedTheme: false,
+        tabsChecked: true,
         componentSize: 'small',
       };
     },
@@ -99,6 +105,15 @@
         this.$store.dispatch({
           type: 'setting/setLayout',
           layout: val ? 'horizontal' : 'inline',
+        });
+      },
+      tabsChange(val) {
+        this.$store.dispatch({
+          type: 'setting/setState',
+          payload: {
+            field: 'tabs',
+            value: val,
+          },
         });
       },
       menuThemeChange(val) {
