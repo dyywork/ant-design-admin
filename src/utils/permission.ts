@@ -37,7 +37,9 @@ async function getTabsList(to: any) {
         meta: to.meta,
         name: to.name,
         openKeys: to.matched.map((item: any) => item.path),
-        selectedKeys: [to.matched.map((item: any) => item.path).reverse()[0]],
+        selectedKeys: to.meta.hiddenSubMenu
+          ? [to.matched[0].path]
+          : [to.matched.map((item: any) => item.path).reverse()[0]],
       },
     });
   }

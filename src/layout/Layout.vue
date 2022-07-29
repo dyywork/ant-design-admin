@@ -100,19 +100,37 @@
 <style scoped lang="less">
   .scroll-style {
     &::-webkit-scrollbar {
-      width: 0px;
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: hsla(0, 0%, 100%, 0.2);
+      border-radius: 3px;
+      -webkit-box-shadow: inset 0 0 5px hsl(0deg 0% 100% / 5%);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: hsla(0, 0%, 100%, 0.15);
+      border-radius: 3px;
+      -webkit-box-shadow: inset 0 0 5px rgb(37 37 37 / 5%);
+    }
+  }
+  .content-scroll-style {
+    &::-webkit-scrollbar {
+      width: 13px;
       height: 13px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.4);
       background-clip: padding-box;
       border: 3px solid transparent;
       border-radius: 7px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background-color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.5);
     }
 
     &::-webkit-scrollbar-track {
@@ -120,7 +138,7 @@
     }
 
     &::-webkit-scrollbar-track:hover {
-      background-color: transparent;
+      background-color: #f8fafc;
     }
   }
   .layout-container {
@@ -156,8 +174,7 @@
       .layout-menu {
         width: 100%;
         flex-grow: 1;
-        overflow: hidden;
-        overflow-y: scroll;
+        overflow: hidden auto;
         .scroll-style();
       }
     }
@@ -167,7 +184,7 @@
       padding: 0 16px;
       overflow: hidden;
       overflow-y: scroll;
-      .scroll-style();
+      .content-scroll-style();
     }
     .ant-layout-sider-has-trigger {
       padding-bottom: 0px;
