@@ -8,7 +8,7 @@
       :style="{ background: theme === 'light' ? '#ffffff' : '#001529' }"
     >
       <div class="logo">{{ size }}</div>
-      <side-menu class="layout-menu" v-if="layout === 'inline'"></side-menu>
+      <side-menu v-if="layout === 'inline'" class="layout-menu"></side-menu>
       <template #trigger>
         <div
           class="layout-container-trigger"

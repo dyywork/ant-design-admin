@@ -29,6 +29,12 @@ Mock.mock('/api/menu/list', 'post', () => {
                 component: '/Table/Table.vue',
                 meta: { title: '表格' },
               },
+              {
+                path: '/admin/center6',
+                name: 'CenterTest6',
+                component: '/Center/Center.vue',
+                meta: { title: 'CenterTest6' },
+              },
             ],
           },
           {
