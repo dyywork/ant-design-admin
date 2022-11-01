@@ -81,7 +81,9 @@
   const tabs = computed(() => store.getters['setting/tabs']);
 
   // keepAlive 缓存
-  const keepAliveNames = computed(() => store.getters['router/keepAliveNames']);
+  const keepAliveNames = computed<any>(
+    () => store.getters['router/keepAliveNames']
+  );
 
   // 路由
   const route = useRoute();

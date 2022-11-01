@@ -97,9 +97,10 @@ const mutations = {
 
 const actions = {
   // 获取routes
-  async getRouters({ commit }: any) {
+  async getRouters({ commit }: any): Promise<any[]> {
     const { data } = await getMenuList();
     const routes = asyncRoutes(data);
+    
     commit('GET_ROUTERS', routes);
     return routes;
   },

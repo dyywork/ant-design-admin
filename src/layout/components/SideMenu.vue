@@ -29,11 +29,12 @@
   import { ref, computed, onMounted, reactive, watch } from 'vue';
   import { useStore } from 'vuex';
   import { useRoute, useRouter } from 'vue-router';
-  const route = useRoute();
-  const router = useRouter();
   import { routes } from '@/router/router';
   import { getMenuItem } from '@/utils/asyncRouter';
+  const route = useRoute();
+  const router = useRouter();
 
+  const selectedKeys = ref([]);
   const store = useStore();
   const menuList = [
     ...reactive(routes),
@@ -45,7 +46,7 @@
     () => store.getters['router/selectedKeys']
   );
   const stateOpenKeys = computed(() => store.getters['router/openKeys']);
-  const selectedKeys = ref([]);
+
   const openKeys = ref([]);
 
   watch(stateSelectedKeys, val => {
