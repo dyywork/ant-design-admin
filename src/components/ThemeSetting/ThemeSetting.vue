@@ -66,7 +66,7 @@
   </a-drawer>
 </template>
 
-<script>
+<script lang="ts">
   import { defineComponent } from 'vue';
   import {
     SettingOutlined,
@@ -92,7 +92,7 @@
     },
     mounted() {},
     methods: {
-      handleSize(e) {
+      handleSize(e: { target: { value: any } }) {
         this.$store.dispatch({
           type: 'setting/setState',
           payload: {
@@ -101,13 +101,13 @@
           },
         });
       },
-      layoutChange(val) {
+      layoutChange(val: any) {
         this.$store.dispatch({
           type: 'setting/setLayout',
           layout: val ? 'horizontal' : 'inline',
         });
       },
-      tabsChange(val) {
+      tabsChange(val: any) {
         this.$store.dispatch({
           type: 'setting/setState',
           payload: {
@@ -116,7 +116,7 @@
           },
         });
       },
-      menuThemeChange(val) {
+      menuThemeChange(val: any) {
         this.$store.dispatch({
           type: 'setting/setTheme',
           theme: !val ? 'dark' : 'light',
@@ -125,7 +125,7 @@
       onClose() {
         this.visible = !this.visible;
       },
-      setColor(val) {
+      setColor(val: string) {
         this.color = val;
         ConfigProvider.config({
           theme: { primaryColor: val },

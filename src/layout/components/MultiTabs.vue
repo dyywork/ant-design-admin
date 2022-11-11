@@ -27,10 +27,11 @@
   </a-tabs>
 </template>
 
-<script>
+<script lang="ts">
   import { defineComponent } from 'vue';
   import { mapGetters } from 'vuex';
   import { SyncOutlined, CloseOutlined } from '@ant-design/icons-vue';
+  import { RouteLocationRaw } from 'vue-router';
 
   export default defineComponent({
     name: 'MultiTabs',
@@ -38,7 +39,7 @@
       SyncOutlined,
       CloseOutlined,
     },
-    inject: ['setIsLoad'],
+    inject: ['setIsLoadString'],
     data() {
       return {
         activeKey: [],
@@ -60,9 +61,9 @@
     },
     methods: {
       refreshPage() {
-        this.setIsLoad();
+        this.setIsLoadString();
       },
-      handleChange(item) {
+      handleChange(item: RouteLocationRaw) {
         this.$router.push(item);
         this.$store.dispatch({
           type: 'router/setCommit',
@@ -70,7 +71,7 @@
           data: item,
         });
       },
-      onEdit(item) {
+      onEdit(item: any) {
         this.$store.dispatch({
           type: 'router/setCommit',
           commit: 'REMOVE_MULTI_TABS',

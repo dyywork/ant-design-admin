@@ -66,7 +66,9 @@
   import ThemeSetting from '@/components/ThemeSetting/ThemeSetting.vue';
   import MultiTabs from './components/MultiTabs.vue';
   import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
+
   import { ref, computed, provide, nextTick } from 'vue';
+  import type { InjectionKey } from 'vue';
   import { useStore } from 'vuex';
   import { useRoute } from 'vue-router';
 
@@ -90,13 +92,14 @@
 
   // 刷新
   const isLoad = ref(true);
+  const setIsLoadString = Symbol() as InjectionKey<Function>;
   const setIsLoad = () => {
     isLoad.value = false;
     nextTick(() => {
       isLoad.value = true;
     });
   };
-  provide('setIsLoad', setIsLoad);
+  provide(setIsLoadString, setIsLoad);
 </script>
 
 <style scoped lang="less">

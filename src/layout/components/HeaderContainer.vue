@@ -38,7 +38,7 @@
   <slot name="tabs"></slot>
 </template>
 
-<script>
+<script lang="ts">
   import { UserOutlined, GlobalOutlined } from '@ant-design/icons-vue';
   export default {
     name: 'HeaderContainer',
@@ -49,12 +49,12 @@
       };
     },
     methods: {
-      handleAdminChange(e) {
+      handleAdminChange(e: { key: string }) {
         if (e.key === 'center') {
           this.$router.push('/admin/center/123');
         }
       },
-      handleVisibleChange(e) {
+      handleVisibleChange(e: { key: string }) {
         this.selectedKeys = [];
         this.selectedKeys.push(e.key);
         this.$store.dispatch({
